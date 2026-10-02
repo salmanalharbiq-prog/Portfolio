@@ -1,0 +1,6 @@
+{
+  "name": "DevPortfolio Pro - Senior Engineering & Design Portfolio",
+  "description": "A high-performance modern developer portfolio and interactive showcase built with React, Tailwind CSS, Motion, and Google Workspace Drive integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
