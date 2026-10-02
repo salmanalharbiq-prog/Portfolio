@@ -24,8 +24,10 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenResume
   const navLinks = [
     { label: t.overview, href: '#hero' },
     { label: t.metrics, href: '#metrics' },
+    { label: t.dashboard, href: '#dashboard' },
     { label: t.experience, href: '#experience' },
     { label: t.projects, href: '#projects' },
+    { label: t.gallery, href: '#gallery' },
     { label: t.skills, href: '#skills' },
     { label: t.certifications, href: '#certifications' },
     { label: t.contact, href: '#contact' },

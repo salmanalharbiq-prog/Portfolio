@@ -9,8 +9,10 @@ import { Language } from './data/portfolioData';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { MetricsRibbon } from './components/MetricsRibbon';
+import { DataDashboardWidget } from './components/DataDashboardWidget';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { ProjectsShowcase } from './components/ProjectsShowcase';
+import { FilterableProjectGallery } from './components/FilterableProjectGallery';
 import { SkillsGovernanceMatrix } from './components/SkillsGovernanceMatrix';
 import { CertificationsSection } from './components/CertificationsSection';
 import { ContactFooter } from './components/ContactFooter';
@@ -101,7 +103,17 @@ export default function App() {
           <MetricsRibbon lang={lang} />
         </motion.section>
 
-        {/* 3. Applied Experience & Academic Timeline */}
+        {/* 3. Interactive Data Dashboard Widget (Chart.js + 3 Dynamic KPI Cards) */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-70px' }}
+          variants={sectionVariants}
+        >
+          <DataDashboardWidget lang={lang} />
+        </motion.section>
+
+        {/* 4. Applied Experience & Academic Timeline */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -111,7 +123,7 @@ export default function App() {
           <ExperienceTimeline lang={lang} />
         </motion.section>
 
-        {/* 4. Flagship AI & Decision Engines */}
+        {/* 5. Flagship AI & Decision Engines */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -121,7 +133,17 @@ export default function App() {
           <ProjectsShowcase lang={lang} />
         </motion.section>
 
-        {/* 5. Skills & Saudi PDPL/NDMO Governance Matrix */}
+        {/* 6. Filterable Project Gallery & STAR Case Studies Modal */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-70px' }}
+          variants={sectionVariants}
+        >
+          <FilterableProjectGallery lang={lang} />
+        </motion.section>
+
+        {/* 7. Skills & Saudi PDPL/NDMO Governance Matrix */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -131,7 +153,7 @@ export default function App() {
           <SkillsGovernanceMatrix lang={lang} />
         </motion.section>
 
-        {/* 6. Globally Verified Certifications */}
+        {/* 8. Globally Verified Certifications */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -142,7 +164,7 @@ export default function App() {
         </motion.section>
       </main>
 
-      {/* 7. Strategic Contact Footer with Scroll Reveal */}
+      {/* 9. Strategic Contact Footer with Scroll Reveal */}
       <motion.div
         initial="hidden"
         whileInView="visible"

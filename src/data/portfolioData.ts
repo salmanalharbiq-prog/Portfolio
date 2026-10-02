@@ -46,8 +46,10 @@ export interface ContentByLang {
   nav: {
     overview: string;
     metrics: string;
+    dashboard: string;
     experience: string;
     projects: string;
+    gallery: string;
     skills: string;
     certifications: string;
     contact: string;
@@ -153,8 +155,10 @@ export const localizedData: Record<Language, ContentByLang> = {
     nav: {
       overview: 'الرئيسية',
       metrics: 'الأرقام',
+      dashboard: 'المؤشرات',
       experience: 'الخبرات',
       projects: 'المشاريع',
+      gallery: 'معرض STAR',
       skills: 'المهارات والسيادة',
       certifications: 'الشهادات',
       contact: 'تواصل',
@@ -405,8 +409,10 @@ export const localizedData: Record<Language, ContentByLang> = {
     nav: {
       overview: 'Overview',
       metrics: 'Impact KPIs',
+      dashboard: 'BI Dashboard',
       experience: 'Experience',
       projects: 'Projects',
+      gallery: 'STAR Gallery',
       skills: 'Skills & PDPL',
       certifications: 'Credentials',
       contact: 'Contact',

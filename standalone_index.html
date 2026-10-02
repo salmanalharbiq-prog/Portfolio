@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سلمان الحربي | أخصائي ذكاء القرارات وعلوم البيانات</title>
+  <meta name="description" content="البورتفوليو الرسمي لسلمان الحربي - أخصائي ذكاء القرارات وعلوم البيانات والتعلم الآلي (Decision Intelligence & MLOps Specialist)" />
+
+  <!-- Google Fonts: Cairo (Arabic) + Inter (English) + JetBrains Mono (Code/Tech) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#080c14',
+            surface: '#0e1626',
+            card: '#131f37',
+            cardHover: '#192846',
+            emerald: {
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            },
+            cyan: {
+              300: '#67e8f9',
+              400: '#22d3ee',
+              500: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-obsidian: #080c14;
+    }
+    body {
+      background-color: #080c14;
+      color: #f8fafc;
+      font-family: 'Cairo', 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    [dir="ltr"] body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080c14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+    .glass-nav {
+      background: rgba(8, 12, 20, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glass-card {
+      background: rgba(14, 22, 38, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #resume-modal, #resume-modal-content, #resume-modal-content * {
+        visibility: visible;
+      }
+      #resume-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background: white !important;
+        color: black !important;
+      }
+      #resume-modal-content {
+        box-shadow: none !important;
+        border: none !important;
+        background: white !important;
+        color: black !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-emerald-500/30 selection:text-emerald-300">
+
+  <!-- Root Application Container -->
+  <div id="app"></div>
+
+  <!-- Centralized Application Data & Reactive Logic -->
+  <script>
+    const portfolioData = {
+      contacts: {
+        phone: '+966 590197730',
+        email: 'salman.alharbi.q@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/salman-alharbi-data-scientist',
+        locationAr: 'الرياض، المملكة العربية السعودية',
+        locationEn: 'Riyadh, Saudi Arabia'
+      },
+      ar: {
+        nav: {
+          overview: 'الرئيسية',
+          metrics: 'الأرقام',
+          experience: 'الخبرات',
+          projects: 'المشاريع',
+          skills: 'المهارات والسيادة',
+          certifications: 'الشهادات',
+          contact: 'تواصل',
+          resumeBtn: 'السيرة الذاتية (PDF)',
+          brandSubtitle: 'ذكاء القرارات • MLOps'
+        },
+        hero: {
+          badge: 'ذكاء القرارات • نماذج محلية آمنة (Local LLMs) • MLOps',
+          name: 'سلمان الحربي',
+          subName: 'Salman Alharbi',
+          title: 'أخصائي ذكاء القرارات وعلوم البيانات (Decision Intelligence Specialist)',
+          hook: 'أحوّل البيانات الضخمة لقرارات استراتيجية فورية عبر نماذج ذكاء اصطناعي محلية تضمن سيادة وخصوصية البيانات 100% وفق معايير PDPL و NDMO.',
+          entitiesLabel: 'خبرات نوعية مع جهات حكومية ومؤسسية رائدة:',
+          entities: [
+            'هيئة تنظيم الكهرباء (SERA)',
+            'أكاديمية طويق & وزارة التعليم',
+            'المركز الوطني للأرصاد (NCM)'
+          ],
+          ctaProjects: 'استكشف المشاريع والأرقام',
+          ctaContact: 'تواصل معي مباشرة',
+          ctaResume: 'استعراض السيرة الذاتية',
+          terminalTitle: 'sera_regulatory_core.py',
+          terminalStatus: 'يعمل بكفاءة',
+          terminalTask: 'معالجة متراكم 4 سنوات (500K+ سجل) في 15 دقيقة',
+          terminalSpeed: 'دورة اتخاذ القرار: أقل من 5 ثوانٍ',
+          terminalPrivacy: 'خصوصية تامة: تشغيل محلي بدون تسريب'
+        },
+        metrics: {
+          sectionTag: '// إنجازات رقمية مثبتة',
+          title: 'أرقام قياسية تصنع الفارق',
+          subtitle: 'مؤشرات أداء ملموسة من مشاريع حكومية ومؤسسية حقيقية',
+          items: [
+            {
+              id: '500k',
+              value: '500K+',
+              label: 'سجل عولجت في 15 دقيقة',
+              detail: 'أتمتة متراكم 4 سنوات لهيئة تنظيم الكهرباء وتوسيعها لـ 4 جهات',
+              color: 'emerald'
+            },
+            {
+              id: 'latency',
+              value: '< 5 ثوانٍ',
+              label: 'سرعة اتخاذ القرار',
+              detail: 'تقليص زمن التحليل من ساعات إلى ثوانٍ عبر نماذج LLM محلية',
+              color: 'cyan'
+            },
+            {
+              id: 'pdpl',
+              value: '100%',
+              label: 'سيادة وامتثال PDPL',
+              detail: 'التزام تام بمعايير مكتب NDMO وحوكمة البيانات داخل المملكة',
+              color: 'indigo'
+            },
+            {
+              id: 'accuracy',
+              value: '97.2%',
+              label: 'دقة التنبؤ الاستثماري',
+              detail: 'محرك تقييم العقارات بمعامل R² = 0.919 ومقارنة 7 خوارزميات',
+              color: 'amber'
+            }
+          ]
+        },
+        experience: {
+          sectionTag: '// المسار المهني',
+          title: 'خبرات قيادية وتنفيذية نوعية',
+          subtitle: 'أثر ملموس في أتمتة الأنظمة، دعم القرار، وتأهيل الكفاءات الوطنية',
+          items: [
+            {
+              role: 'قائد ومدرب تقني مسار الذكاء الاصطناعي',
+              entity: 'أكاديمية طويق (بالشراكة مع وزارة التعليم)',
+              badge: 'قيادة وتدريب تقني',
+              period: '07/2026 – 08/2026',
+              location: 'جدة، المملكة العربية السعودية',
+              bullets: [
+                'قيادة مسارات الذكاء الاصطناعي التوليدي (Prompt Engineering) والأمن السيبراني لطلبة المدارس.',
+                'توجيه بناء نماذج أولية في إنترنت الأشياء (Arduino) وبيئات الواقع الافتراضي (VR).',
+                'إدارة المعرض التقني الختامي وتدريب المتحدثين وحصد إشادات القيادات التنفيذية.'
+              ],
+              tags: ['GenAI', 'Prompt Engineering', 'IoT & Sensors', 'VR Prototypes', 'Leadership']
+            },
+            {
+              role: 'أخصائي علوم بيانات وذكاء قرارات (تمهير)',
+              entity: 'هيئة تنظيم الكهرباء (عبر مجموعة الخطوات العالمية)',
+              badge: 'حوكمة وذكاء اصطناعي سيادي',
+              period: '12/2025 – 06/2026',
+              location: 'الرياض، المملكة العربية السعودية',
+              bullets: [
+                'ابتكار مسار أتمتة حصد متراكم 4 سنوات (500K+ سجل) في 15 دقيقة فقط، والتوسع لـ 4 جهات أخرى.',
+                'تسريع دورة اتخاذ القرار من ساعات إلى أقل من 5 ثوانٍ بنماذج لغوية محلية (Local LLMs) لضمان الخصوصية 100%.',
+                'أتمتة عقبات التشغيل وبناء لوحات بيانات تنفيذية لدعم الرقابة التنظيمية وتحليل المشاعر عبر 5+ منصات.'
+              ],
+              tags: ['Local LLMs', 'PDPL & NDMO', '500K Ingestion', 'Executive Insights', 'DuckDB']
+            },
+            {
+              role: 'مهندس بيانات متدرب',
+              entity: 'المركز الوطني للأرصاد (NCM)',
+              badge: 'هندسة خطوط البيانات',
+              period: '06/2024 – 08/2024',
+              location: 'جدة، المملكة العربية السعودية',
+              bullets: [
+                'أتمتة معالجة تقارير الطقس الساعية عبر بايثون وإلغاء الإدخال اليدوي بالكامل.',
+                'تطوير نظام لتصنيف رسائل الطيران (ICAO) عبر تحليل السلاسل الزمنية.',
+                'تحسين استعلامات SQL عبر DuckDB، وتطبيق حاويات Docker ومنظومة Git لضمان استقرار البيئة.'
+              ],
+              tags: ['Python / Regex', 'DuckDB', 'ICAO Data', 'Docker', 'Time-Series']
+            }
+          ],
+          educationTitle: 'المؤهل الأكاديمي',
+          degree: 'بكالوريوس علوم البيانات (Bachelor of Data Science)',
+          institution: 'جامعة جدة — كلية علوم وهندسة الحاسب',
+          period: '08/2020 – 01/2025',
+          courseworkLabel: 'أبرز المواد التخصصية:',
+          coursework: ['تعلم الآلة', 'استخراج البيانات', 'تحليلات البيانات الضخمة', 'معالجة اللغات الطبيعية NLP', 'الحوسبة السحابية']
+        },
+        projects: {
+          sectionTag: '// مشاريع استراتيجية',
+          title: 'حلول ذكية من الفكرة إلى الإنتاج',
+          subtitle: 'معمارية متكاملة تجمع دقة النماذج وعائد الاستثمار المباشر',
+          tab1: 'نظام التأمين الآلي (CV)',
+          tab2: 'محرك العقار الاستثماري',
+          pipelineLabel: 'مسار التنفيذ الهندسي (Pipeline)',
+          highlightsLabel: 'أبرز نقاط الإنجاز والابتكار:',
+          items: [
+            {
+              id: 'insurance-yolo',
+              title: 'نظام دعم قرارات التأمين الآلي لحوادث المركبات',
+              category: 'رؤية حاسوبية ونظم ذكاء القرارات',
+              period: '10/2024 – 01/2025',
+              tag: 'مشروع التخرج المتميز | Graduation Project',
+              summary: 'منصة ذكية متكاملة ترصد أضرار المركبات تلقائياً، وتصنف شدتها، وتحدد القطع المتضررة، ثم تحسب تكلفة الإصلاح وتصدر تقرير PDF تنفيذي فوري.',
+              metrics: [
+                { label: 'دقة اكتشاف الضرر', value: '81%', subtext: 'YOLOv8 Detection' },
+                { label: 'دقة تحديد الشدة', value: '93%', subtext: 'EfficientNetB0' },
+                { label: 'التعرف على القطع', value: '100%', subtext: 'تغطية 21 جزءاً بالمركبة' },
+                { label: 'حجم مجموعة البيانات', value: '23,000+', subtext: 'صورة معالجة ومفلترة' }
+              ],
+              pipelineSteps: [
+                'معالجة 23k+ صورة حادث عبر OpenCV',
+                'تحديد مواقع الضرر بنموذج YOLOv8',
+                'تصنيف شدة الضرر بنموذج EfficientNetB0',
+                'مطابقة 21 جزءاً بدقة 100%',
+                'توليد تقرير تكاليف PDF عبر Streamlit'
+              ],
+              highlights: [
+                'معالجة وتوسيم أكثر من 23 ألف صورة حوادث لإنشاء مجموعة بيانات عالية الجودة.',
+                'دمج نموذجين (YOLOv8 + EfficientNetB0) لتحقيق دقة تامة في تحديد 21 قطعة غيار.',
+                'بناء محرك تسعير ذكي يربط مخرجات النماذج بكتالوجات التكاليف المعتمدة.',
+                'نشر تطبيق تفاعلي بـ Streamlit يصدر تقارير فورية معتمدة لشركات التأمين.'
+              ],
+              techStack: ['Python', 'YOLOv8', 'EfficientNetB0', 'OpenCV', 'Streamlit', 'Pandas', 'PyTorch']
+            },
+            {
+              id: 'real-estate-ai',
+              title: 'محرك تقييم الاستثمار العقاري السعودي والتنبؤ بالأسعار',
+              category: 'التحليلات التنبؤية ونمذجة البيانات',
+              period: '10/2023 – 11/2023',
+              tag: 'محرك تنبؤي متقدم | Predictive Engine',
+              summary: 'محرك تنبؤي عالي الدقة يحلل الصفقات العقارية بالمملكة، ويتنبأ بالأسعار المستقبلية لدعم قرارات المستثمرين والصناديق العقارية بدقة 97.2%.',
+              metrics: [
+                { label: 'دقة التنبؤ بالأسعار', value: '97.2%', subtext: 'RandomForest Regressor' },
+                { label: 'معامل التفسير', value: '0.919', subtext: 'R-squared (R²)' },
+                { label: 'النماذج المقارنة', value: '7 نماذج', subtext: 'Benchmarking Matrix' },
+                { label: 'هندسة الخصائص', value: 'مؤتمتة', subtext: 'Pipeline End-to-End' }
+              ],
+              pipelineSteps: [
+                'سحب وتنقية بيانات الصفقات العقارية',
+                'هندسة آلية للمتغيرات الجغرافية والمالية',
+                'مقارنة واختبار 7 خوارزميات ML',
+                'ضبط النموذج الأفضل (RandomForest)',
+                'توليد مؤشرات السوق للجان الاستثمار'
+              ],
+              highlights: [
+                'تحقيق دقة 97.2% ومعامل R² يبلغ 0.919 باستخدام نموذج غابات عشوائية مضبوط بدقة.',
+                'بناء مسار تدريب وتنبؤ مؤتمت بالكامل يشمل كشف القيم الشاذة وترميز المواقع الجغرافية.',
+                'مقارنة معيارية بين 7 نماذج لاختيار التوازن الأمثل بين سرعة الاستجابة وأقل هامش خطأ.',
+                'تزويد لجان الاستثمار بمؤشرات استباقية تسهم في تعظيم العائد الاستثماري (ROI).'
+              ],
+              techStack: ['Python', 'Scikit-Learn', 'RandomForest', 'Feature Engineering', 'Data Analytics']
+            }
+          ]
+        },
+        skills: {
+          sectionTag: '// القدرات والحوكمة',
+          title: 'ترسانة تقنية محصنة بالسيادة',
+          subtitle: 'جمع فريد بين عمق الرياضيات، بنية MLOps التحتية، والامتثال الصارم للأنظمة',
+          complianceTitle: 'الالتزام الكامل بنظام حماية البيانات الشخصية ومكتب NDMO',
+          complianceBadge: '100% سيادة بيانات داخل المملكة',
+          complianceDesc: 'تشغيل آمن للنماذج اللغوية محلياً (On-Premise) دون أي تسريب لبيانات المشتركين أو السجلات الحساسة خارج البيئة المعتمدة.',
+          verifiedBadge: 'معايير مؤسسية معتمدة',
+          groups: [
+            {
+              title: 'الذكاء الاصطناعي والرؤية واللغات',
+              icon: 'cpu',
+              skills: ['Python', 'R', 'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision (YOLOv8)', 'Time-Series', 'Predictive Modeling']
+            },
+            {
+              title: 'هندسة البيانات وخطوط MLOps',
+              icon: 'git-branch',
+              skills: ['SQL Optimization', 'DuckDB (OLAP)', 'Docker Containers', 'Git & Workflows', 'ETL Pipelines', 'Streamlit', 'Power BI', 'Tableau', 'SAP']
+            },
+            {
+              title: 'السيادة واللوائح السعودية',
+              icon: 'shield-check',
+              skills: ['Saudi PDPL', 'NDMO Frameworks', 'Local LLMs', '100% In-Kingdom Residency', 'Data Ethics', 'Regulatory Compliance']
+            },
+            {
+              title: 'ذكاء القرارات والاستراتيجية',
+              icon: 'trending-up',
+              skills: ['ROI Analysis', 'Executive Data Storytelling', 'Market Surveillance', 'Decision Latency Reduction', 'Tech Mentorship']
+            }
+          ]
+        },
+        certifications: {
+          sectionTag: '// الشهادات المعتمدة',
+          title: 'اعتمادات مهنية من كبرى المؤسسات',
+          subtitle: 'أسس رياضية وتحليلية معتمدة عالمياً لدعم القرارات التقنية الحساسة',
+          verifiedText: 'معتمدة ومحققة',
+          items: [
+            { title: 'Google Data Analytics Specialization', issuer: 'Google', date: '04/2023', type: 'تحليلات البيانات المتقدمة' },
+            { title: 'Calculus for Machine Learning and Data Science', issuer: 'DeepLearning.AI', date: '10/2023', type: 'رياضيات الذكاء الاصطناعي' },
+            { title: 'Linear Algebra for Machine Learning and Data Science', issuer: 'DeepLearning.AI', date: '11/2023', type: 'جبر خطي متقدم' },
+            { title: 'Python for Everybody Specialization', issuer: 'University of Michigan', date: '05/2025', type: 'برمجة احترافية' },
+            { title: 'Microsoft 365 Fundamentals', issuer: 'Microsoft', date: '07/2025', type: 'سحابة مؤسسية' }
+          ]
+        },
+        contact: {
+          statusBadge: 'جاهز لقيادة مشاريع الذكاء والبيانات الكبرى',
+          title: 'لنصنع أثراً حقيقياً في منظومتك',
+          desc: 'سواء كنت بحاجة لأتمتة خطوط بيانات ضخمة، نشر نماذج ذكاء اصطناعي سيادية، أو تسريع اتخاذ القرار في جهتك — أنا جاهز للتعاون المباشر.',
+          resumeBtn: 'استعراض وتحميل السيرة الذاتية (PDF)',
+          directEmailBtn: 'إرسال بريد فوري',
+          emailLabel: 'البريد الرسمي',
+          phoneLabel: 'الهاتف المباشر',
+          linkedinLabel: 'ملف LinkedIn',
+          locationLabel: 'المقر',
+          locationValue: 'الرياض، المملكة العربية السعودية',
+          copyBtn: 'نسخ',
+          copiedBtn: 'تم النسخ!',
+          footerRole: 'أخصائي ذكاء القرارات وعلوم البيانات',
+          footerTech: 'جاهز للنشر المباشر عبر GitHub Pages'
+        },
+        resumeModal: {
+          title: 'السيرة الذاتية الرسمية التنفيذية | سلمان الحربي',
+          printBtn: 'طباعة / حفظ كملف PDF',
+          summaryHeading: '// الملخص المهني',
+          experienceHeading: '// الخبرات العملية',
+          projectsHeading: '// المشاريع الاستراتيجية',
+          educationHeading: '// التعليم',
+          certificationsHeading: '// الشهادات المعتمدة'
+        }
+      },
+      en: {
+        nav: {
+          overview: 'Overview',
+          metrics: 'Impact KPIs',
+          experience: 'Experience',
+          projects: 'Projects',
+          skills: 'Skills & PDPL',
+          certifications: 'Credentials',
+          contact: 'Contact',
+          resumeBtn: 'Resume (PDF)',
+          brandSubtitle: 'Decision Intelligence'
+        },
+        hero: {
+          badge: 'Decision Intelligence • Privacy-First Local LLMs • MLOps',
+          name: 'Salman Alharbi',
+          subName: 'سلمان الحربي',
+          title: 'Decision Intelligence Specialist | Data Science & MLOps',
+          hook: 'Turning high-velocity enterprise data into sub-5-second strategic decisions using privacy-first Local LLMs with 100% Saudi PDPL and NDMO data sovereignty.',
+          entitiesLabel: 'Proven track record across premier Saudi entities:',
+          entities: [
+            'Saudi Electricity Regulatory Authority (SERA)',
+            'Tuwaiq Academy & Ministry of Education',
+            'National Center of Meteorology (NCM)'
+          ],
+          ctaProjects: 'Explore Flagship Projects',
+          ctaContact: 'Direct Contact',
+          ctaResume: 'View Executive Resume',
+          terminalTitle: 'sera_regulatory_core.py',
+          terminalStatus: 'LIVE & SCALED',
+          terminalTask: 'Harvest 4-year backlog (500K+ records) in 15 mins',
+          terminalSpeed: 'Decision cycle: < 5.0 seconds',
+          terminalPrivacy: '100% In-Kingdom Data Sovereignty'
+        },
+        metrics: {
+          sectionTag: '// High-Impact Benchmarks',
+          title: 'Numbers That Drive Executive Impact',
+          subtitle: 'Quantitative milestones proven in applied government and regulatory operations',
+          items: [
+            {
+              id: '500k',
+              value: '500K+',
+              label: 'Records Ingested in 15 Mins',
+              detail: 'Automated 4-year backlog for primary regulator SERA, scaled to 4 clients',
+              color: 'emerald'
+            },
+            {
+              id: 'latency',
+              value: '< 5s',
+              label: 'Decision Velocity',
+              detail: 'Compressed awareness-to-analysis from hours to seconds via Local LLMs',
+              color: 'cyan'
+            },
+            {
+              id: 'pdpl',
+              value: '100%',
+              label: 'Data Sovereignty (PDPL)',
+              detail: 'Full compliance with NDMO frameworks with zero external data leaks',
+              color: 'indigo'
+            },
+            {
+              id: 'accuracy',
+              value: '97.2%',
+              label: 'Predictive Valuation Accuracy',
+              detail: 'Achieved R² = 0.919 bench-tested across 7 machine learning regressors',
+              color: 'amber'
+            }
+          ]
+        },
+        experience: {
+          sectionTag: '// Career Track',
+          title: 'Applied Leadership & Enterprise Delivery',
+          subtitle: 'Proven operational delivery, regulatory AI deployments, and national talent enablement',
+          items: [
+            {
+              role: 'Lead Technical Instructor | AI Track',
+              entity: 'Tuwaiq Academy (in partnership with MoE)',
+              badge: 'Technical Leadership',
+              period: '07/2026 – 08/2026',
+              location: 'Jeddah, Saudi Arabia',
+              bullets: [
+                'Led deep-tech cohorts instructing university-grade Generative AI and Cybersecurity.',
+                'Mentored student teams building IoT sensor systems and interactive VR environments.',
+                'Directed the flagship tech exhibition and earned executive leadership commendations.'
+              ],
+              tags: ['GenAI', 'Prompt Engineering', 'IoT & Sensors', 'VR Systems', 'Leadership']
+            },
+            {
+              role: 'Data Science Specialist (Tamheer)',
+              entity: 'Saudi Electricity Regulatory Authority (via Universal Steps Group)',
+              badge: 'Regulatory Oversight & AI',
+              period: '12/2025 – 06/2026',
+              location: 'Riyadh, Saudi Arabia',
+              bullets: [
+                'Ingested 4-year data backlog (500K+ records) in 15 mins for SERA; scaled framework to 4 clients.',
+                'Compressed decision cycles from hours to < 5 seconds using Local LLMs for 100% PDPL data residency.',
+                'Automated operational bottlenecks and transformed multi-source sentiment data into executive insights.'
+              ],
+              tags: ['Local LLMs', 'PDPL & NDMO', '500K Ingestion', 'Executive Insights', 'DuckDB']
+            },
+            {
+              role: 'Data Engineer Intern',
+              entity: 'National Center of Meteorology (NCM)',
+              badge: 'Pipelines & Infrastructure',
+              period: '06/2024 – 08/2024',
+              location: 'Jeddah, Saudi Arabia',
+              bullets: [
+                'Automated hourly weather report processing using Python (Pandas/Regex), eliminating manual entry.',
+                'Built ICAO message classification system for flight arrivals via time-series analysis.',
+                'Optimized DuckDB SQL queries and containerized workflows with Docker and Git.'
+              ],
+              tags: ['Python / Regex', 'DuckDB', 'ICAO Data', 'Docker', 'Time-Series']
+            }
+          ],
+          educationTitle: 'Academic Foundation',
+          degree: 'Bachelor of Data Science',
+          institution: 'University of Jeddah — College of Computer Science & Engineering',
+          period: '08/2020 – 01/2025',
+          courseworkLabel: 'Core Coursework:',
+          coursework: ['Machine Learning', 'Data Mining', 'Big Data Analytics', 'NLP', 'Cloud Computing']
+        },
+        projects: {
+          sectionTag: '// Flagship Architectures',
+          title: 'Production-Grade AI & Decision Engines',
+          subtitle: 'End-to-end architectures balancing precision, inference speed, and measurable business ROI',
+          tab1: 'Auto Insurance AI (CV)',
+          tab2: 'Real Estate Valuation',
+          pipelineLabel: 'Execution Pipeline Flow',
+          highlightsLabel: 'Key Engineering Highlights:',
+          items: [
+            {
+              id: 'insurance-yolo',
+              title: 'Automated Insurance Decision Support System',
+              category: 'Computer Vision & Decision Intelligence',
+              period: '10/2024 – 01/2025',
+              tag: 'Graduation Flagship Project',
+              summary: 'End-to-end multi-stage deep learning platform automating vehicular damage detection, severity classification, and instant audit-ready PDF claims valuation.',
+              metrics: [
+                { label: 'Damage Detection', value: '81%', subtext: 'YOLOv8 Localization' },
+                { label: 'Severity Accuracy', value: '93%', subtext: 'EfficientNetB0' },
+                { label: 'Part Identification', value: '100%', subtext: 'Across 21 Vehicle Parts' },
+                { label: 'Dataset Scale', value: '23,000+', subtext: 'Curated Image Library' }
+              ],
+              pipelineSteps: [
+                '23,000+ Raw Collision Images (OpenCV)',
+                'YOLOv8 Spatial Bounding-Box Detection',
+                'EfficientNetB0 Severity Classification',
+                '100% Match Across 21 Vehicle Parts',
+                'Streamlit Automated PDF Valuation Report'
+              ],
+              highlights: [
+                'Curated and preprocessed 23,000+ vehicle damage images using OpenCV and automated Pandas workflows.',
+                'Coupled YOLOv8 localization with EfficientNetB0 to achieve 100% part identification accuracy.',
+                'Engineered a rule-based cost estimation engine linking model outputs to official pricing tables.',
+                'Deployed Streamlit web app generating audit-ready PDF claims reports on the fly.'
+              ],
+              techStack: ['Python', 'YOLOv8', 'EfficientNetB0', 'OpenCV', 'Streamlit', 'Pandas', 'PyTorch']
+            },
+            {
+              id: 'real-estate-ai',
+              title: 'Saudi Real Estate Investment Valuation Engine',
+              category: 'Predictive Analytics & Market Intelligence',
+              period: '10/2023 – 11/2023',
+              tag: 'Predictive Valuation Engine',
+              summary: 'High-confidence predictive ML pipeline forecasting property transaction values across metropolitan Saudi markets to guide real estate investment funds.',
+              metrics: [
+                { label: 'Valuation Precision', value: '97.2%', subtext: 'RandomForest Regressor' },
+                { label: 'Variance Explained', value: '0.919', subtext: 'R-squared (R²)' },
+                { label: 'Models Evaluated', value: '7 Models', subtext: 'Benchmarking Matrix' },
+                { label: 'Feature Pipeline', value: 'Automated', subtext: 'End-to-End Scalable' }
+              ],
+              pipelineSteps: [
+                'Saudi Transaction Data Ingestion',
+                'Geospatial & Structural Feature Engineering',
+                '7-Model Cross-Validation Matrix',
+                'Hyperparameter-Tuned Random Forest',
+                'Executive Investment Committee Dashboards'
+              ],
+              highlights: [
+                'Predicted property prices with 97.2% precision (R² = 0.919) using an optimized Random Forest Regressor.',
+                'Engineered automated geospatial and structural feature extraction pipelines.',
+                'Rigorously benchmarked 7 ML regressors to optimize the trade-off between inference speed and lowest MAE.',
+                'Provided market surveillance indicators empowering investment committees to maximize ROI.'
+              ],
+              techStack: ['Python', 'Scikit-Learn', 'RandomForest', 'Feature Engineering', 'Data Analytics']
+            }
+          ]
+        },
+        skills: {
+          sectionTag: '// Technical Matrix',
+          title: 'Deep-Tech Stack & Sovereign Governance',
+          subtitle: 'Rigorous mathematical foundations combined with MLOps infrastructure and strict regulatory compliance',
+          complianceTitle: 'Strict Adherence to Saudi PDPL & NDMO Mandates',
+          complianceBadge: '100% In-Kingdom Data Residency',
+          complianceDesc: 'Zero external cloud model leaks. All Large Language Models and inference pipelines operate on-premise or within sanctioned Saudi cloud zones.',
+          verifiedBadge: 'Verified Enterprise Standard',
+          groups: [
+            {
+              title: 'Core AI, Vision & Language',
+              icon: 'cpu',
+              skills: ['Python', 'R', 'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision (YOLOv8)', 'Time-Series', 'Predictive Modeling']
+            },
+            {
+              title: 'MLOps, Data Engineering & Pipelines',
+              icon: 'git-branch',
+              skills: ['SQL Optimization', 'DuckDB (OLAP)', 'Docker Containers', 'Git & Workflows', 'ETL Pipelines', 'Streamlit', 'Power BI', 'Tableau', 'SAP']
+            },
+            {
+              title: 'Data Governance & Saudi Regulations',
+              icon: 'shield-check',
+              skills: ['Saudi PDPL', 'NDMO Frameworks', 'Local LLMs', '100% In-Kingdom Residency', 'Data Ethics', 'Regulatory Compliance']
+            },
+            {
+              title: 'Decision Intelligence & Strategy',
+              icon: 'trending-up',
+              skills: ['ROI Analysis', 'Executive Data Storytelling', 'Market Surveillance', 'Decision Latency Reduction', 'Tech Mentorship']
+            }
+          ]
+        },
+        certifications: {
+          sectionTag: '// Credentials',
+          title: 'Globally Certified Technical Foundations',
+          subtitle: 'Specialized machine learning mathematics and cloud architectures certified by global leaders',
+          verifiedText: 'Verified Credential',
+          items: [
+            { title: 'Google Data Analytics Specialization', issuer: 'Google', date: '04/2023', type: 'Advanced Analytics' },
+            { title: 'Calculus for Machine Learning and Data Science', issuer: 'DeepLearning.AI', date: '10/2023', type: 'Mathematics for AI' },
+            { title: 'Linear Algebra for Machine Learning and Data Science', issuer: 'DeepLearning.AI', date: '11/2023', type: 'Advanced Linear Algebra' },
+            { title: 'Python for Everybody Specialization', issuer: 'University of Michigan', date: '05/2025', type: 'Production Programming' },
+            { title: 'Microsoft 365 Fundamentals', issuer: 'Microsoft', date: '07/2025', type: 'Enterprise Cloud' }
+          ]
+        },
+        contact: {
+          statusBadge: 'Open for Strategic & Enterprise Roles',
+          title: "Let's Drive Measurable Impact",
+          desc: 'Whether building sovereign data pipelines, deploying on-premise AI models, or automating high-stakes executive decisions — let us connect.',
+          resumeBtn: 'View & Download Resume (PDF)',
+          directEmailBtn: 'Send Direct Email',
+          emailLabel: 'Official Email',
+          phoneLabel: 'Direct Phone',
+          linkedinLabel: 'LinkedIn Profile',
+          locationLabel: 'Base Location',
+          locationValue: 'Riyadh, Saudi Arabia',
+          copyBtn: 'Copy',
+          copiedBtn: 'Copied!',
+          footerRole: 'Decision Intelligence Specialist | Data Science & MLOps',
+          footerTech: 'Ready for Instant GitHub Pages Hosting'
+        },
+        resumeModal: {
+          title: 'Official Executive Resume | Salman Alharbi',
+          printBtn: 'Print / Save as PDF',
+          summaryHeading: '// Professional Summary',
+          experienceHeading: '// Professional Experience',
+          projectsHeading: '// Strategic AI Projects',
+          educationHeading: '// Education',
+          certificationsHeading: '// Certifications'
+        }
+      }
+    };
+
+    // State Variables
+    let currentLang = 'ar';
+    let activeProjectTab = 0;
+    let isResumeModalOpen = false;
+    let isMobileMenuOpen = false;
+    let copiedField = null;
+
+    // Helper functions
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.title = currentLang === 'ar' 
+        ? 'سلمان الحربي | أخصائي ذكاء القرارات وعلوم البيانات'
+        : 'Salman Alharbi | Decision Intelligence Specialist & MLOps';
+      renderApp();
+    }
+
+    function setActiveTab(index) {
+      activeProjectTab = index;
+      renderApp();
+    }
+
+    function toggleResumeModal(state) {
+      isResumeModalOpen = state;
+      renderApp();
+    }
+
+    function toggleMobileMenu() {
+      isMobileMenuOpen = !isMobileMenuOpen;
+      renderApp();
+    }
+
+    function copyToClipboard(text, field) {
+      navigator.clipboard.writeText(text);
+      copiedField = field;
+      renderApp();
+      setTimeout(() => {
+        copiedField = null;
+        renderApp();
+      }, 2500);
+    }
+
+    function printResume() {
+      window.print();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Main App Renderer
+    function renderApp() {
+      const isRtl = currentLang === 'ar';
+      const t = portfolioData[currentLang];
+      const contacts = portfolioData.contacts;
+      const selectedProject = t.projects.items[activeProjectTab] || t.projects.items[0];
+
+      const html = `
+        <div class="min-h-screen bg-[#080c14] text-slate-100 relative selection:bg-emerald-500/30 selection:text-emerald-300">
+          
+          <!-- Sticky Glass Navbar -->
+          <header class="fixed top-0 left-0 right-0 z-50 py-3.5 glass-nav border-b border-slate-800/80 shadow-2xl transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+              
+              <!-- Brand Monogram -->
+              <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-indigo-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg shadow-sm group-hover:border-emerald-400 transition-colors">
+                  SA
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-semibold text-slate-100 tracking-tight flex items-center gap-2 text-sm sm:text-base">
+                    ${isRtl ? 'سلمان الحربي' : 'Salman Alharbi'}
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  </span>
+                  <span class="text-[11px] font-mono text-emerald-400/90 font-medium">
+                    ${t.nav.brandSubtitle}
+                  </span>
+                </div>
+              </a>
+
+              <!-- Desktop Nav Links -->
+              <nav class="hidden lg:flex items-center gap-1 bg-slate-900/60 border border-slate-800/80 rounded-full px-4 py-1.5 backdrop-blur-md">
+                <a href="#hero" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.overview}</a>
+                <a href="#metrics" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.metrics}</a>
+                <a href="#experience" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.experience}</a>
+                <a href="#projects" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.projects}</a>
+                <a href="#skills" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.skills}</a>
+                <a href="#certifications" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.certifications}</a>
+                <a href="#contact" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-full transition-all">${t.nav.contact}</a>
+              </nav>
+
+              <!-- Controls -->
+              <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="toggleLanguage()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-xs font-mono font-medium text-slate-200 hover:text-white transition-all shadow-sm">
+                  <i data-lucide="globe" class="w-3.5 h-3.5 text-cyan-400"></i>
+                  <span>${isRtl ? 'English' : 'عربي'}</span>
+                </button>
+
+                <button onclick="toggleResumeModal(true)" class="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-400 text-emerald-300 hover:text-emerald-200 text-xs font-medium transition-all shadow-sm">
+                  <i data-lucide="file-down" class="w-4 h-4 text-emerald-400"></i>
+                  <span class="hidden sm:inline">${t.nav.resumeBtn}</span>
+                  <span class="sm:hidden">CV</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800">
+                  <i data-lucide="${isMobileMenuOpen ? 'x' : 'menu'}" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile Drawer -->
+            ${isMobileMenuOpen ? `
+              <div class="lg:hidden mt-3 px-4 pt-3 pb-2 border-t border-slate-800 bg-[#0e1626]/95 backdrop-blur-xl rounded-2xl mx-4 shadow-2xl border border-slate-800 space-y-2">
+                <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.overview}</a>
+                <a href="#metrics" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.metrics}</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.experience}</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.projects}</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.skills}</a>
+                <a href="#certifications" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.certifications}</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:bg-slate-800/80">${t.nav.contact}</a>
+              </div>
+            ` : ''}
+          </header>
+
+          <!-- 1. Hero Section -->
+          <section id="hero" class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-emerald-600/10 via-cyan-500/10 to-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Main Info -->
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md bg-slate-900/80 border border-slate-700/60 text-slate-300 text-xs font-mono mb-5 backdrop-blur-md">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-emerald-400 font-semibold tracking-wide">${t.hero.badge}</span>
+                  </div>
+
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-3">
+                    ${t.hero.name}
+                    <span class="block text-xl sm:text-2xl font-mono text-emerald-400 mt-2 font-normal">${t.hero.subName}</span>
+                  </h1>
+
+                  <p class="text-base sm:text-lg font-semibold text-cyan-300/90 mb-4 tracking-tight flex items-center gap-2">
+                    <i data-lucide="cpu" class="w-5 h-5 text-cyan-400 inline shrink-0"></i>
+                    ${t.hero.title}
+                  </p>
+
+                  <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 max-w-2xl font-normal">
+                    ${t.hero.hook}
+                  </p>
+
+                  <!-- Entities -->
+                  <div class="w-full mb-7 pt-4 border-t border-slate-800/80">
+                    <p class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2.5 flex items-center gap-2">
+                      <i data-lucide="building-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                      ${t.hero.entitiesLabel}
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      ${t.hero.entities.map(e => `
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-slate-200 text-xs font-medium hover:border-emerald-500/40 transition-colors">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                          ${e}
+                        </span>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <!-- CTAs -->
+                  <div class="flex flex-wrap items-center gap-3.5">
+                    <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20">
+                      <span>${t.hero.ctaProjects}</span>
+                      <i data-lucide="${isRtl ? 'arrow-left' : 'arrow-right'}" class="w-4 h-4"></i>
+                    </a>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-slate-200 text-xs sm:text-sm font-medium transition-all">
+                      <span>${t.hero.ctaContact}</span>
+                    </a>
+
+                    <button onclick="toggleResumeModal(true)" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-emerald-400 hover:text-emerald-300 text-xs sm:text-sm font-medium hover:bg-emerald-500/5 transition-all">
+                      <i data-lucide="award" class="w-4 h-4"></i>
+                      <span>${t.hero.ctaResume}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Telemetry Card -->
+                <div class="lg:col-span-5">
+                  <div class="relative rounded-2xl bg-gradient-to-b from-[#0e1626] to-[#0a101d] border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+                    <div class="flex items-center justify-between pb-3.5 border-b border-slate-800 mb-4">
+                      <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                        <span class="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                          <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+                          ${t.hero.terminalTitle}
+                        </span>
+                      </div>
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                        ${t.hero.terminalStatus}
+                      </span>
+                    </div>
+
+                    <div class="font-mono text-xs text-slate-300 space-y-3 leading-relaxed">
+                      <div class="text-slate-400">
+                        <span class="text-cyan-400 font-semibold">import</span> local_llm, duckdb, yolo_v8
+                      </div>
+                      <div class="text-slate-400">
+                        <span class="text-cyan-400 font-semibold">from</span> saudi_sovereignty <span class="text-cyan-400 font-semibold">import</span> PDPL, NDMO
+                      </div>
+
+                      <div class="p-3 rounded-lg bg-slate-950/70 border border-slate-800/60 space-y-1.5">
+                        <div class="flex justify-between items-center text-[11px] text-slate-300 font-semibold">
+                          <span>${t.hero.terminalTask}</span>
+                          <span class="text-emerald-400">100%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                          <div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-1.5 rounded-full w-full"></div>
+                        </div>
+                      </div>
+
+                      <div class="p-3 rounded-lg bg-slate-950/70 border border-slate-800/60 space-y-1">
+                        <div class="flex items-center gap-1.5 text-cyan-400 font-semibold">
+                          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                          <span>${t.hero.terminalSpeed}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-slate-400 text-[11px]">
+                          <i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i>
+                          <span>${t.hero.terminalPrivacy}</span>
+                        </div>
+                      </div>
+
+                      <div class="pt-2 border-t border-slate-800/80 flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px]">
+                          <i data-lucide="shield-check" class="w-3 h-3"></i>
+                          Saudi PDPL Compliant
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px]">
+                          <i data-lucide="database" class="w-3 h-3"></i>
+                          NDMO Data Residency
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. Metrics Ribbon -->
+          <section id="metrics" class="py-12 relative border-y border-slate-800/80 bg-[#0a101d]/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+                <div>
+                  <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest block mb-1">${t.metrics.sectionTag}</span>
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${t.metrics.title}</h2>
+                </div>
+                <p class="text-xs text-slate-400 font-mono">${t.metrics.subtitle}</p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                ${t.metrics.items.map(m => `
+                  <div class="rounded-2xl p-6 border border-slate-800 hover:border-slate-700 bg-slate-900/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-4">
+                      <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400">
+                        <i data-lucide="${m.id === '500k' ? 'database' : m.id === 'latency' ? 'zap' : m.id === 'pdpl' ? 'shield-check' : 'trending-up'}" class="w-5 h-5"></i>
+                      </div>
+                      <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Verified</span>
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white font-mono mb-2">${m.value}</div>
+                    <h3 class="text-sm font-bold text-slate-100 mb-1.5">${m.label}</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">${m.detail}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Experience Timeline -->
+          <section id="experience" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="mb-14">
+                <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1.5">
+                  <i data-lucide="briefcase" class="w-4 h-4"></i>
+                  <span>${t.experience.sectionTag}</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${t.experience.title}</h2>
+                <p class="mt-2 text-slate-400 text-sm max-w-2xl">${t.experience.subtitle}</p>
+              </div>
+
+              <div class="relative border-slate-800 space-y-10 ${isRtl ? 'border-r mr-4 md:mr-8 pr-6 md:pr-10' : 'border-l ml-4 md:ml-8 pl-6 md:pl-10'}">
+                ${t.experience.items.map((exp, idx) => `
+                  <div class="relative group">
+                    <div class="absolute top-2 w-6 h-6 rounded-full bg-[#080c14] border-2 border-emerald-500 flex items-center justify-center ${isRtl ? '-right-[31px] md:-right-[47px]' : '-left-[31px] md:-left-[47px]'}">
+                      <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                    </div>
+
+                    <div class="rounded-2xl bg-[#0f172a]/70 border border-slate-800/80 p-6 md:p-7 backdrop-blur-md shadow-xl hover:border-slate-700 transition-all">
+                      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3.5">
+                        <div>
+                          <div class="flex flex-wrap items-center gap-2.5 mb-1">
+                            <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">${exp.role}</h3>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${exp.badge}</span>
+                          </div>
+                          <div class="text-emerald-400 font-medium text-sm flex items-center gap-2">
+                            <i data-lucide="building" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                            <span>${exp.entity}</span>
+                          </div>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-slate-400">
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5 text-cyan-400"></i>
+                            ${exp.period}
+                          </span>
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            ${exp.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="space-y-2 mb-5">
+                        ${exp.bullets.map(b => `
+                          <div class="flex items-start gap-2.5 text-sm text-slate-300 leading-relaxed">
+                            <i data-lucide="${isRtl ? 'chevron-left' : 'chevron-right'}" class="w-4 h-4 text-emerald-400 shrink-0 mt-1"></i>
+                            <span>${b}</span>
+                          </div>
+                        `).join('')}
+                      </div>
+
+                      <div class="pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-mono text-slate-400">Stack:</span>
+                        ${exp.tags.map(tag => `
+                          <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-slate-900/90 text-cyan-300 border border-slate-800">${tag}</span>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+
+                <!-- Education Node -->
+                <div class="relative group">
+                  <div class="absolute top-2 w-6 h-6 rounded-full bg-[#080c14] border-2 border-indigo-500 flex items-center justify-center ${isRtl ? '-right-[31px] md:-right-[47px]' : '-left-[31px] md:-left-[47px]'}">
+                    <div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+                  </div>
+
+                  <div class="rounded-2xl bg-[#0f172a]/70 border border-indigo-500/20 p-6 md:p-7 backdrop-blur-md">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                      <div>
+                        <div class="flex items-center gap-2 mb-1">
+                          <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-400"></i>
+                          <h3 class="text-lg sm:text-xl font-bold text-white">${t.experience.degree}</h3>
+                        </div>
+                        <p class="text-sm text-indigo-300 font-medium">${t.experience.institution}</p>
+                      </div>
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i>
+                        ${t.experience.period}
+                      </span>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                      <span class="text-xs font-mono text-slate-400">${t.experience.courseworkLabel}</span>
+                      ${t.experience.coursework.map(c => `
+                        <span class="px-2.5 py-0.5 rounded-md text-xs font-medium bg-indigo-950/40 text-indigo-200 border border-indigo-800/40">${c}</span>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Projects Showcase -->
+          <section id="projects" class="py-20 relative bg-[#090f1b]/50 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
+                <div>
+                  <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1.5">
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                    <span>${t.projects.sectionTag}</span>
+                  </div>
+                  <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${t.projects.title}</h2>
+                  <p class="mt-2 text-slate-400 text-sm max-w-2xl">${t.projects.subtitle}</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex p-1.5 rounded-xl bg-slate-900 border border-slate-800 shrink-0">
+                  <button onclick="setActiveTab(0)" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${activeProjectTab === 0 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm' : 'text-slate-400 hover:text-slate-200'}">
+                    <i data-lucide="car" class="w-4 h-4"></i>
+                    <span>${t.projects.tab1}</span>
+                  </button>
+                  <button onclick="setActiveTab(1)" class="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${activeProjectTab === 1 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm' : 'text-slate-400 hover:text-slate-200'}">
+                    <i data-lucide="home" class="w-4 h-4"></i>
+                    <span>${t.projects.tab2}</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selected Project Card -->
+              <div class="rounded-3xl bg-gradient-to-b from-[#0e1626] to-[#0a101d] border border-slate-800 p-6 sm:p-9 shadow-2xl backdrop-blur-xl">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800 mb-6">
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">${selectedProject.tag}</span>
+                    <span class="text-xs font-mono text-slate-400">${selectedProject.period}</span>
+                  </div>
+                  <span class="text-xs font-mono text-cyan-400 font-medium">${selectedProject.category}</span>
+                </div>
+
+                <div class="mb-7">
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">${selectedProject.title}</h3>
+                  <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">${selectedProject.summary}</p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
+                  ${selectedProject.metrics.map(m => `
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+                      <span class="text-xs font-mono text-slate-400 mb-1">${m.label}</span>
+                      <span class="text-2xl sm:text-3xl font-extrabold text-emerald-300 font-mono my-1">${m.value}</span>
+                      <span class="text-[11px] text-slate-400 leading-tight">${m.subtext}</span>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-6">
+                  <div class="lg:col-span-7 space-y-3">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2 font-bold">
+                      <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                      ${t.projects.highlightsLabel}
+                    </h4>
+                    <div class="space-y-2.5">
+                      ${selectedProject.highlights.map(h => `
+                        <div class="p-3.5 rounded-xl bg-slate-900/50 border border-slate-800/80 text-sm text-slate-200 leading-relaxed flex items-start gap-3">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span>
+                          <span>${h}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <!-- Pipeline -->
+                  <div class="lg:col-span-5 rounded-2xl bg-slate-950/80 border border-slate-800 p-5 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-slate-400 mb-3.5">
+                      <span class="flex items-center gap-2 text-cyan-400 font-semibold">
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                        ${t.projects.pipelineLabel}
+                      </span>
+                      <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Ready</span>
+                    </div>
+
+                    <div class="space-y-2 text-slate-300">
+                      ${selectedProject.pipelineSteps.map((step, sIdx) => `
+                        <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+                          <span class="font-semibold text-slate-200">${step}</span>
+                          <span class="text-[10px] text-emerald-400 font-mono">0${sIdx + 1}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-5 border-t border-slate-800 flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-mono text-slate-400 mr-2">Tech:</span>
+                  ${selectedProject.techStack.map(ts => `
+                    <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-900 border border-slate-800 text-slate-300">${ts}</span>
+                  `).join('')}
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 5. Skills & Governance Matrix -->
+          <section id="skills" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="mb-12">
+                <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1.5">
+                  <i data-lucide="shield-check" class="w-4 h-4"></i>
+                  <span>${t.skills.sectionTag}</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${t.skills.title}</h2>
+                <p class="mt-2 text-slate-400 text-sm max-w-2xl">${t.skills.subtitle}</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                ${t.skills.groups.map(group => `
+                  <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-7 backdrop-blur-md shadow-xl hover:border-slate-700 transition-all">
+                    <div class="flex items-center gap-3 mb-5">
+                      <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400">
+                        <i data-lucide="${group.icon}" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white tracking-tight">${group.title}</h3>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                      ${group.skills.map(s => `
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900/90 text-slate-200 border border-slate-800/90 shadow-sm">
+                          <i data-lucide="check" class="w-3 h-3 text-emerald-400"></i>
+                          <span>${s}</span>
+                        </span>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- PDPL Callout Banner -->
+              <div class="rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-indigo-950/40 border border-emerald-500/30 p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-3.5">
+                  <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-white flex flex-wrap items-center gap-2">
+                      <span>${t.skills.complianceTitle}</span>
+                      <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">${t.skills.complianceBadge}</span>
+                    </h4>
+                    <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">${t.skills.complianceDesc}</p>
+                  </div>
+                </div>
+                <span class="text-xs font-mono text-emerald-400 shrink-0 border border-emerald-500/30 px-3 py-1.5 rounded-lg bg-emerald-500/5">${t.skills.verifiedBadge}</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. Certifications Section -->
+          <section id="certifications" class="py-20 relative bg-[#090f1b]/40 border-t border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="mb-10">
+                <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1.5">
+                  <i data-lucide="award" class="w-4 h-4"></i>
+                  <span>${t.certifications.sectionTag}</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${t.certifications.title}</h2>
+                <p class="mt-2 text-slate-400 text-sm max-w-2xl">${t.certifications.subtitle}</p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                ${t.certifications.items.map(cert => `
+                  <div class="rounded-2xl bg-gradient-to-b from-[#0e1626] to-[#0a101d] border border-slate-800/80 p-5 sm:p-6 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 shadow-lg">
+                    <div>
+                      <div class="flex items-center justify-between gap-2 mb-3.5">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-mono border font-semibold text-emerald-400 bg-emerald-500/10 border-emerald-500/30">${cert.issuer}</span>
+                        <span class="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                          <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i>
+                          ${cert.date}
+                        </span>
+                      </div>
+                      <h3 class="text-sm sm:text-base font-bold text-white tracking-tight mb-1.5">${cert.title}</h3>
+                    </div>
+
+                    <div class="mt-4 pt-3.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
+                      <span class="flex items-center gap-1.5 text-slate-300">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                        ${cert.type}
+                      </span>
+                      <span class="text-[11px] text-emerald-400/90">${t.certifications.verifiedText}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. Contact Footer -->
+          <footer id="contact" class="relative pt-16 pb-12 border-t border-slate-800/80 bg-[#070b12]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+              <div class="rounded-3xl bg-gradient-to-b from-[#0f172a] to-[#0a101d] border border-slate-800 p-6 sm:p-10 mb-12 shadow-2xl backdrop-blur-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  
+                  <div class="lg:col-span-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono mb-3.5">
+                      <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                      <span>${t.contact.statusBadge}</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">${t.contact.title}</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal max-w-xl">${t.contact.desc}</p>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                      <button onclick="toggleResumeModal(true)" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-emerald-500/20">
+                        <i data-lucide="file-down" class="w-4 h-4"></i>
+                        <span>${t.contact.resumeBtn}</span>
+                      </button>
+                      <a href="mailto:${contacts.email}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium transition-all">
+                        <i data-lucide="send" class="w-4 h-4 text-cyan-400"></i>
+                        <span>${t.contact.directEmailBtn}</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="lg:col-span-6 space-y-3.5">
+                    <!-- Email -->
+                    <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-3">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                          <i data-lucide="mail" class="w-4 h-4"></i>
+                        </div>
+                        <div class="truncate">
+                          <span class="text-[11px] font-mono text-slate-400 block">${t.contact.emailLabel}</span>
+                          <a href="mailto:${contacts.email}" class="text-xs sm:text-sm font-mono text-white hover:text-emerald-300 truncate block">${contacts.email}</a>
+                        </div>
+                      </div>
+                      <button onclick="copyToClipboard('${contacts.email}', 'email')" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 shrink-0 transition-all">
+                        ${copiedField === 'email' ? `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-emerald-400">${t.contact.copiedBtn}</span>` : `<i data-lucide="copy" class="w-3.5 h-3.5"></i><span>${t.contact.copyBtn}</span>`}
+                      </button>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-3">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+                          <i data-lucide="phone" class="w-4 h-4"></i>
+                        </div>
+                        <div class="truncate">
+                          <span class="text-[11px] font-mono text-slate-400 block">${t.contact.phoneLabel}</span>
+                          <a href="tel:${contacts.phone.replace(/\\s+/g, '')}" class="text-xs sm:text-sm font-mono text-white hover:text-cyan-300 truncate block">${contacts.phone}</a>
+                        </div>
+                      </div>
+                      <button onclick="copyToClipboard('${contacts.phone}', 'phone')" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 shrink-0 transition-all">
+                        ${copiedField === 'phone' ? `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-emerald-400">${t.contact.copiedBtn}</span>` : `<i data-lucide="copy" class="w-3.5 h-3.5"></i><span>${t.contact.copyBtn}</span>`}
+                      </button>
+                    </div>
+
+                    <!-- LinkedIn & Location -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      <a href="${contacts.linkedin}" target="_blank" rel="noopener noreferrer" class="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition-colors group">
+                        <div class="p-2.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                          <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </div>
+                        <div class="truncate">
+                          <span class="text-[11px] font-mono text-slate-400 block">${t.contact.linkedinLabel}</span>
+                          <span class="text-xs font-semibold text-slate-200 group-hover:text-white truncate block">salman-alharbi-data-scientist</span>
+                        </div>
+                      </a>
+
+                      <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center gap-3">
+                        <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                          <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                          <span class="text-[11px] font-mono text-slate-400 block">${t.contact.locationLabel}</span>
+                          <span class="text-xs font-semibold text-slate-200 block">${isRtl ? contacts.locationAr : contacts.locationEn}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer Bar -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-800/80 text-xs text-slate-400 font-mono">
+                <div class="flex items-center gap-2">
+                  <span>© ${new Date().getFullYear()} Salman Alharbi</span>
+                  <span class="text-slate-600">|</span>
+                  <span class="text-emerald-400">${t.contact.footerRole}</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="text-slate-400">${t.contact.footerTech}</span>
+                  <button onclick="scrollToTop()" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors" title="Top">
+                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+          <!-- 8. Resume Modal -->
+          ${isResumeModalOpen ? `
+            <div id="resume-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
+              <div id="resume-modal-content" class="relative w-full max-w-4xl bg-[#0c1322] border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+                
+                <div class="no-print px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between shrink-0">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    <span class="text-sm font-semibold text-slate-200 font-mono">${t.resumeModal.title}</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button onclick="printResume()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-medium transition-colors">
+                      <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                      <span>${t.resumeModal.printBtn}</span>
+                    </button>
+                    <button onclick="toggleResumeModal(false)" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                      <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-6 sm:p-10 overflow-y-auto space-y-7 text-slate-200">
+                  <div class="border-b border-slate-800 pb-5">
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight">${t.hero.name}</h1>
+                    <p class="text-base font-semibold text-emerald-400 font-mono mt-1">${t.hero.title}</p>
+                    <div class="flex flex-wrap items-center gap-3 mt-3 text-xs font-mono text-slate-400">
+                      <span>${isRtl ? contacts.locationAr : contacts.locationEn}</span>
+                      <span>•</span>
+                      <span>${contacts.phone}</span>
+                      <span>•</span>
+                      <span>${contacts.email}</span>
+                      <span>•</span>
+                      <span>linkedin.com/in/salman-alharbi-data-scientist</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2 font-bold">${t.resumeModal.summaryHeading}</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">${t.hero.hook}</p>
+                  </div>
+
+                  <div>
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3.5 font-bold">${t.resumeModal.experienceHeading}</h2>
+                    <div class="space-y-4">
+                      ${t.experience.items.map(exp => `
+                        <div class="space-y-1.5">
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between text-sm">
+                            <span class="font-bold text-white">${exp.role} <span class="font-normal text-emerald-300">— ${exp.entity}</span></span>
+                            <span class="text-xs font-mono text-slate-400">${exp.period}</span>
+                          </div>
+                          <ul class="space-y-1 pl-4 pr-4 text-xs text-slate-300 list-disc">
+                            ${exp.bullets.map(b => `<li class="leading-relaxed">${b}</li>`).join('')}
+                          </ul>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-3.5 font-bold">${t.resumeModal.projectsHeading}</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      ${t.projects.items.map(p => `
+                        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs space-y-1.5">
+                          <div class="flex justify-between items-center">
+                            <span class="font-bold text-white text-sm">${p.title}</span>
+                            <span class="text-emerald-400 font-mono">${p.period}</span>
+                          </div>
+                          <p class="text-slate-300 leading-relaxed">${p.summary}</p>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+                    <div>
+                      <h2 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2 font-bold">${t.resumeModal.educationHeading}</h2>
+                      <div class="text-xs space-y-1">
+                        <p class="font-bold text-white">${t.experience.degree}</p>
+                        <p class="text-slate-400">${t.experience.institution}</p>
+                        <p class="text-slate-500 font-mono">${t.experience.period}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <h2 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2 font-bold">${t.resumeModal.certificationsHeading}</h2>
+                      <ul class="text-xs space-y-1 text-slate-300">
+                        ${t.certifications.items.map(c => `
+                          <li class="flex justify-between items-center">
+                            <span>${c.title} (${c.issuer})</span>
+                            <span class="font-mono text-slate-400">${c.date}</span>
+                          </li>
+                        `).join('')}
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          ` : ''}
+
+        </div>
+      `;
+
+      document.getElementById('app').innerHTML = html;
+      // Initialize Lucide SVG icons
+      lucide.createIcons();
+    }
+
+    // Initial render on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderApp();
+    });
+    // Fallback if already loaded
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      renderApp();
+    }
+  </script>
+</body>
+</html>
