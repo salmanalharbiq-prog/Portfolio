@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // Relative base so the site works under https://<user>.github.io/Portfolio/
+    base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
