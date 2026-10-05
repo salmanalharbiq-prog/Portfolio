@@ -1306,10 +1306,185 @@ color:var(--accent);display:grid;place-items:center;font-size:1rem;line-height:1
 .cert-item{transition:transform .25s,border-color .25s}.cert-item:hover{transform:translateX(6px)}
 html[dir=rtl] .cert-item:hover{transform:translateX(-6px)}
 @media(pointer:coarse){#glow{display:none}}
-@media(prefers-reduced-motion:reduce){#net,#glow,.scroll-cue{display:none}.hero-calligraphy,.timeline-item.open-item .timeline-marker,.roles i{animation:none}}
+
+/* ===== Full-bleed Journey Background Canvas ===== */
+#journeyCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  display: block;
+}
+
+/* ===== Slim Vertical Journey Progress Rail ===== */
+.journey-rail {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-end: 1.25rem;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.35rem;
+  padding: 0.85rem 0.4rem;
+  pointer-events: auto;
+  user-select: none;
+  background: rgba(11, 11, 12, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(232, 212, 77, 0.12);
+  border-radius: 24px;
+}
+
+html[dir="rtl"] .journey-rail {
+  align-items: flex-start;
+}
+
+.journey-rail-track-line {
+  position: absolute;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  inset-inline-end: 0.95rem;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.journey-rail-track-fill {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--accent), #fff6b0);
+  box-shadow: 0 0 8px rgba(232, 212, 77, 0.6);
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.3rem;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+html[dir="ltr"] .journey-step {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .journey-step {
+  flex-direction: row-reverse;
+}
+
+.journey-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 212, 77, 0.4);
+  background: #0b0b0c;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 2px rgba(11, 11, 12, 0.85);
+  flex-shrink: 0;
+}
+
+.journey-step:hover .journey-dot {
+  border-color: var(--accent);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(232, 212, 77, 0.6);
+}
+
+.journey-step.active .journey-dot {
+  background: var(--accent);
+  border-color: #fff6b0;
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(232, 212, 77, 0.9), 0 0 0 3px rgba(232, 212, 77, 0.2);
+}
+
+.journey-label {
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  opacity: 0.72;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.journey-step:hover .journey-label {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.journey-step.active .journey-label {
+  color: var(--accent);
+  font-weight: 700;
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(232, 212, 77, 0.4);
+}
+
+@media (max-width: 768px) {
+  .journey-rail {
+    inset-inline-end: 0.5rem;
+    gap: 1.1rem;
+    padding: 0.6rem 0.3rem;
+  }
+  .journey-label {
+    display: none;
+  }
+  .journey-rail-track-line {
+    inset-inline-end: 0.65rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #journeyCanvas, .journey-rail, #net, #glow, .scroll-cue { display: none !important; }
+  .hero-calligraphy, .timeline-item.open-item .timeline-marker, .roles i { animation: none !important; }
+}
 </style>
 </head>
 <body>
+
+  <!-- Full-bleed Journey Canvas (Data -> Patterns -> AI -> Decision) -->
+  <canvas id="journeyCanvas" aria-hidden="true"></canvas>
+
+  <!-- Slim Vertical Journey Progress Rail -->
+  <nav id="journeyRail" class="journey-rail" aria-label="Strategic Journey">
+    <div class="journey-rail-track-line">
+      <div class="journey-rail-track-fill" id="journeyRailFill"></div>
+    </div>
+    <button class="journey-step active" data-step="0" data-target=".hero-section" aria-label="Data">
+      <span class="journey-label" data-i18n="journey_data">Data</span>
+      <span class="journey-dot"></span>
+    </button>
+    <button class="journey-step" data-step="1" data-target="#skills" aria-label="Patterns">
+      <span class="journey-label" data-i18n="journey_patterns">Patterns</span>
+      <span class="journey-dot"></span>
+    </button>
+    <button class="journey-step" data-step="2" data-target="#projects" aria-label="AI">
+      <span class="journey-label" data-i18n="journey_ai">AI</span>
+      <span class="journey-dot"></span>
+    </button>
+    <button class="journey-step" data-step="3" data-target="#contact" aria-label="Decision">
+      <span class="journey-label" data-i18n="journey_decision">Decision</span>
+      <span class="journey-dot"></span>
+    </button>
+  </nav>
 
   <!-- Sticky Top Navigation -->
   <header>
@@ -2261,7 +2436,11 @@ html[dir=rtl] .cert-item:hover{transform:translateX(-6px)}
           footer_copy: "© 2026 Salman Alharbi (سلمان الحربي). All rights reserved. Decision Intelligence & Data Science.",
           proj_cta: "View Architecture & Breakdown",
           proj_badge: "Click to inspect",
-          modal_close_btn: "Close Breakdown"
+          modal_close_btn: "Close Breakdown",
+          journey_data: "Data",
+          journey_patterns: "Patterns",
+          journey_ai: "AI",
+          journey_decision: "Decision"
         },
         ar: {
           name: "سلمان الحربي",
@@ -2421,7 +2600,11 @@ html[dir=rtl] .cert-item:hover{transform:translateX(-6px)}
           footer_copy: "© 2026 سلمان الحربي (Salman Alharbi). جميع الحقوق محفوظة. ذكاء القرار وعلم البيانات.",
           proj_cta: "عرض المعمارية وتفاصيل المشروع",
           proj_badge: "انقر للاستعراض",
-          modal_close_btn: "إغلاق التفاصيل"
+          modal_close_btn: "إغلاق التفاصيل",
+          journey_data: "البيانات",
+          journey_patterns: "الأنماط",
+          journey_ai: "الذكاء",
+          journey_decision: "القرار"
         }
       };
 
@@ -2870,9 +3053,8 @@ var prog=D.createElement('div');prog.id='prog';D.body.appendChild(prog);
 var glow=D.createElement('div');glow.id='glow';D.body.appendChild(glow);
 addEventListener('scroll',function(){var h=R.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
 if(fine)addEventListener('mousemove',function(e){glow.style.opacity=1;glow.style.transform='translate('+(e.clientX-260)+'px,'+(e.clientY-260)+'px)'});
-// hero extras: network canvas, roles, scroll cue
+// hero extras: roles, scroll cue
 var hero=D.querySelector('.hero-section');
-var cv=D.createElement('canvas');cv.id='net';hero.insertBefore(cv,hero.firstChild);
 var cue=D.createElement('div');cue.className='scroll-cue';hero.appendChild(cue);
 var roles=D.createElement('p');roles.className='roles';roles.innerHTML='<b></b><i></i>';
 D.querySelector('.hero-title').after(roles);
@@ -2882,20 +3064,385 @@ var ri=0,ci=0,del=false,rb=roles.firstChild;
 if(rm||R.lang==='ar'){rb.textContent=w;ri++;ci=0;del=false;return setTimeout(tick,2200)}
 ci+=del?-1:1;rb.textContent=w.slice(0,Math.max(ci,0));var t=del?35:75;
 if(!del&&ci>=w.length){del=true;t=1400}else if(del&&ci<=0){del=false;ri++;t=300}setTimeout(tick,t)})();
-if(!rm){var c=cv.getContext('2d'),P=[],m={x:-999,y:-999},W,H;
-function rs(){W=cv.width=hero.clientWidth;H=cv.height=hero.clientHeight;var n=Math.min(70,W*H/16000|0);P=[];
-for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35})}
-rs();addEventListener('resize',rs);
-hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
-hero.addEventListener('mouseleave',function(){m.x=m.y=-999});
-var vis=true;new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(hero);
-(function loop(){requestAnimationFrame(loop);if(!vis||D.hidden)return;c.clearRect(0,0,W,H);
-for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-var dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d<140){p.x+=dx/d*.9;p.y+=dy/d*.9}
-c.fillStyle='rgba(232,212,77,.7)';c.beginPath();c.arc(p.x,p.y,1.6,0,6.3);c.fill();
-for(var j=i+1;j<P.length;j++){var q=P[j],l=Math.hypot(p.x-q.x,p.y-q.y);
-if(l<120){c.strokeStyle='rgba(232,212,77,'+(.22*(1-l/120))+')';c.beginPath();c.moveTo(p.x,p.y);c.lineTo(q.x,q.y);c.stroke()}}
-if(d<170){c.strokeStyle='rgba(255,246,176,'+(.45*(1-d/170))+')';c.beginPath();c.moveTo(p.x,p.y);c.lineTo(m.x,m.y);c.stroke()}}})()}
+
+// ===== SCROLL-DRIVEN JOURNEY BACKGROUND (Data -> Patterns -> AI -> Decision) =====
+(function(){
+  if(rm)return;
+  var cv=D.getElementById('journeyCanvas');
+  if(!cv)return;
+  var ctx=cv.getContext('2d');
+  if(!ctx)return;
+
+  var isMobile=window.innerWidth<768;
+  var N=isMobile?55:135;
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var W=0,H=0;
+
+  function onResize(){
+    W=window.innerWidth;
+    H=window.innerHeight;
+    cv.width=Math.floor(W*DPR);
+    cv.height=Math.floor(H*DPR);
+    cv.style.width=W+'px';
+    cv.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  onResize();
+  window.addEventListener('resize',onResize);
+
+  // Mouse tracking with gentle smoothing for subtle tilt reaction
+  var mouse={x:W*0.5,y:H*0.5,targetX:W*0.5,targetY:H*0.5};
+  window.addEventListener('mousemove',function(e){
+    mouse.targetX=e.clientX;
+    mouse.targetY=e.clientY;
+  },{passive:true});
+
+  // Landmark Sections
+  var projEl=D.getElementById('projects');
+  var skillsEl=D.getElementById('skills');
+  var contactEl=D.getElementById('contact');
+
+  // Progress rail elements
+  var railSteps=D.querySelectorAll('.journey-step');
+  var railFill=D.getElementById('journeyRailFill');
+
+  railSteps.forEach(function(step){
+    step.addEventListener('click',function(){
+      var sel=this.getAttribute('data-target');
+      var el=D.querySelector(sel);
+      if(el){el.scrollIntoView({behavior:'smooth'})}
+    });
+  });
+
+  // Generate particles with deterministic aesthetic seeds
+  var particles=[];
+  for(var i=0;i<N;i++){
+    var fr=i/N;
+    particles.push({
+      id:i,
+      fr:fr,
+      angle:fr*Math.PI*2,
+      baseRadiusFactor:0.75+(Math.sin(i*1.73)*0.5+0.5)*0.45,
+      zJitter:(Math.cos(i*3.14)*0.5+0.5)*36-18,
+      orbitSpeed:0.0028+(i%5)*0.0006,
+      size:1.3+(i%4)*0.45,
+      baseAlpha:0.32+(i%3)*0.16,
+
+      // Cluster properties (Skills: Patterns)
+      cluster:i%4,
+      clusterOffsetAngle:((i*13)%100)/100*Math.PI*2,
+      clusterOffsetDist:0.15+((i*7)%100)/100*0.85,
+
+      // Neural layer properties (Projects: AI)
+      layer:i%4,
+      layerSlot:Math.floor(i/4),
+
+      // Decision convergence (Contact: Decision)
+      rayAngle:fr*Math.PI*2,
+      rayDist:0.08+Math.pow(((i*19)%100)/100,1.4)*0.92,
+
+      // Animated coordinates
+      x:W*0.5,
+      y:H*0.5,
+      alpha:0.4
+    });
+  }
+
+  var animId=null,active=true,lastTime=performance.now(),time=0;
+
+  // Visibility change: pause when tab is hidden or minimized
+  D.addEventListener('visibilitychange',function(){
+    if(D.hidden){
+      active=false;
+      if(animId){cancelAnimationFrame(animId);animId=null}
+    }else{
+      active=true;
+      lastTime=performance.now();
+      if(!animId){animId=requestAnimationFrame(loop)}
+    }
+  });
+
+  function loop(now){
+    if(!active)return;
+    animId=requestAnimationFrame(loop);
+
+    var dt=Math.min((now-lastTime)/1000,0.1);
+    lastTime=now;
+    time+=dt;
+
+    // Smooth mouse tilt lerp
+    mouse.x+=(mouse.targetX-mouse.x)*0.06;
+    mouse.y+=(mouse.targetY-mouse.y)*0.06;
+
+    // Scroll metrics & landmarks
+    var scrollY=window.scrollY||window.pageYOffset;
+    var vh=window.innerHeight;
+
+    var projY=projEl?Math.max(1,projEl.offsetTop-vh*0.3):vh;
+    var skillsY=skillsEl?Math.max(projY+1,skillsEl.offsetTop-vh*0.3):vh*2;
+    var contactY=contactEl?Math.max(skillsY+1,contactEl.offsetTop-vh*0.45):vh*3;
+
+    // Continuous scroll phase weights
+    var wHero=0,wProj=0,wSkills=0,wContact=0;
+
+    if(scrollY<=projY){
+      var p=Math.min(Math.max(scrollY/projY,0),1);
+      var ease=p*p*(3-2*p);
+      wHero=1-ease;
+      wProj=ease;
+    }else if(scrollY<=skillsY){
+      var p=Math.min(Math.max((scrollY-projY)/(skillsY-projY),0),1);
+      var ease=p*p*(3-2*p);
+      wProj=1-ease;
+      wSkills=ease;
+    }else{
+      var p=Math.min(Math.max((scrollY-skillsY)/(contactY-skillsY),0),1);
+      var ease=p*p*(3-2*p);
+      wSkills=1-ease;
+      wContact=ease;
+    }
+
+    // Active rail pip update
+    var activeStep=0;
+    if(wContact>0.4){
+      activeStep=3; // Decision
+    }else if(wSkills>0.45){
+      activeStep=1; // Patterns
+    }else if(wProj>0.45){
+      activeStep=2; // AI
+    }else{
+      activeStep=0; // Data
+    }
+
+    railSteps.forEach(function(step){
+      var idx=parseInt(step.getAttribute('data-step'),10);
+      step.classList.toggle('active',idx===activeStep);
+    });
+
+    if(railFill){
+      var maxScroll=Math.max(1,D.documentElement.scrollHeight-window.innerHeight);
+      var overallP=Math.min(Math.max(scrollY/maxScroll,0),1);
+      railFill.style.height=(overallP*100)+'%';
+    }
+
+    // Projects layer sequential lighting progress
+    var projProgress=0;
+    if(projEl){
+      var pRect=projEl.getBoundingClientRect();
+      projProgress=Math.min(Math.max((vh-pRect.top)/(vh+pRect.height),0),1);
+    }
+
+    ctx.clearRect(0,0,W,H);
+
+    // State Centers & Geometry
+    var heroCenter={
+      x:W>768?W*0.62:W*0.5,
+      y:W>768?H*0.48:H*0.42
+    };
+
+    var minDim=Math.min(W,H);
+    var planetRadius=minDim*(W>768?0.30:0.38);
+
+    // Subtle 3D tilt responding to mouse in Hero Data Planet
+    var baseTiltX=1.12;
+    var tiltX=baseTiltX+((mouse.y-H*0.5)/H)*0.28;
+    var tiltY=((mouse.x-W*0.5)/W)*0.38;
+
+    // Cluster centroids (Skills: Patterns)
+    var clusterCenters=[
+      {x:W*0.28,y:H*0.32},
+      {x:W*0.72,y:H*0.30},
+      {x:W*0.30,y:H*0.68},
+      {x:W*0.70,y:H*0.66}
+    ];
+    var clusterMaxDist=minDim*(isMobile?0.16:0.13);
+
+    // Neural Network layers (Projects: AI)
+    var layerX=[W*0.18,W*0.38,W*0.60,W*0.82];
+    var nodesPerLayer=Math.ceil(N/4);
+
+    // Decision Point focus (Contact)
+    var decisionCenter={x:W*0.5,y:H*0.48};
+
+    // Calculate targets and interpolate
+    var targets=[];
+    for(var i=0;i<N;i++){
+      var p=particles[i];
+
+      // 1. Hero Data Planet Target
+      var orbAngle=p.angle+time*p.orbitSpeed*10;
+      var rOrb=planetRadius*p.baseRadiusFactor;
+      var x0=rOrb*Math.cos(orbAngle);
+      var y0=rOrb*Math.sin(orbAngle)*Math.cos(tiltX)+p.zJitter*Math.sin(tiltX);
+      var z0=rOrb*Math.sin(orbAngle)*Math.sin(tiltX)-p.zJitter*Math.cos(tiltX);
+      var depthScale=1+z0/(planetRadius*3.5);
+      var hx=heroCenter.x+(x0*Math.cos(tiltY)-z0*Math.sin(tiltY))*depthScale;
+      var hy=heroCenter.y+y0*depthScale;
+      var hAlpha=p.baseAlpha*(0.35+0.65*((z0+planetRadius)/(planetRadius*2)));
+
+      // 2. Skills Cluster Target (Patterns)
+      var cCenter=clusterCenters[p.cluster];
+      var cAngle=p.clusterOffsetAngle+time*0.2*(p.cluster%2===0?1:-1);
+      var cDist=p.clusterOffsetDist*clusterMaxDist;
+      var sx=cCenter.x+Math.cos(cAngle)*cDist;
+      var sy=cCenter.y+Math.sin(cAngle)*cDist;
+      var sAlpha=p.baseAlpha*0.85;
+
+      // 3. Projects Neural Network Target (AI)
+      var lx=layerX[p.layer];
+      var ly=H*0.18+((p.layerSlot+0.5)/nodesPerLayer)*(H*0.64)+Math.sin(time*0.7+i)*6;
+      // Sequential layer lighting: Layer 0 at 0.15, Layer 1 at 0.35, Layer 2 at 0.55, Layer 3 at 0.75
+      var layerThreshold=0.15+p.layer*0.20;
+      var isLit=projProgress>=layerThreshold;
+      var pAlpha=isLit?Math.min(p.baseAlpha*1.6,0.95):p.baseAlpha*0.35;
+
+      // 4. Contact Decision Target
+      var pulse=Math.sin(time*2.5)*0.08;
+      var cDistDec=p.rayDist*minDim*0.38*(1-pulse);
+      var cAngleDec=p.rayAngle+time*0.15;
+      var dx=decisionCenter.x+Math.cos(cAngleDec)*cDistDec;
+      var dy=decisionCenter.y+Math.sin(cAngleDec)*cDistDec;
+      var dAlpha=Math.min(p.baseAlpha*1.4,0.9);
+
+      // Morph coordinates smoothly based on scroll phase
+      var finalX=0,finalY=0,finalAlpha=0;
+      if(wHero>0||(wProj>0&&wSkills===0&&wContact===0)){
+        finalX=hx*wHero+lx*wProj;
+        finalY=hy*wHero+ly*wProj;
+        finalAlpha=hAlpha*wHero+pAlpha*wProj;
+      }else if(wProj>0||(wSkills>0&&wContact===0)){
+        finalX=lx*wProj+sx*wSkills;
+        finalY=ly*wProj+sy*wSkills;
+        finalAlpha=pAlpha*wProj+sAlpha*wSkills;
+      }else{
+        finalX=sx*wSkills+dx*wContact;
+        finalY=sy*wSkills+dy*wContact;
+        finalAlpha=sAlpha*wSkills+dAlpha*wContact;
+      }
+
+      p.x+=(finalX-p.x)*0.22;
+      p.y+=(finalY-p.y)*0.22;
+      p.alpha+=(finalAlpha-p.alpha)*0.22;
+
+      targets.push({
+        x:p.x,
+        y:p.y,
+        alpha:p.alpha,
+        size:p.size,
+        layer:p.layer,
+        cluster:p.cluster,
+        isLit:isLit
+      });
+    }
+
+    // DRAW CONNECTIONS:
+
+    // 1. Neural Network Synapses (when wProj > 0.04)
+    if(wProj>0.04){
+      var synAlpha=wProj*0.12;
+      ctx.lineWidth=1;
+      for(var i=0;i<N;i++){
+        var pA=targets[i];
+        if(pA.layer>=3)continue;
+        for(var j=0;j<N;j++){
+          var pB=targets[j];
+          if(pB.layer===pA.layer+1&&Math.abs(pA.y-pB.y)<H*0.28){
+            var litConn=pA.isLit&&pB.isLit;
+            ctx.strokeStyle=litConn
+              ?'rgba(232, 212, 77, '+(synAlpha*2.2)+')'
+              :'rgba(232, 212, 77, '+(synAlpha*0.6)+')';
+            ctx.beginPath();
+            ctx.moveTo(pA.x,pA.y);
+            ctx.lineTo(pB.x,pB.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // 2. Intra-Cluster Lines (when wSkills > 0.04)
+    if(wSkills>0.04){
+      var clustLineAlpha=wSkills*0.18;
+      ctx.lineWidth=1;
+      for(var i=0;i<N;i++){
+        var pA=targets[i];
+        for(var j=i+1;j<N;j++){
+          var pB=targets[j];
+          if(pA.cluster===pB.cluster){
+            var dx=pA.x-pB.x;
+            var dy=pA.y-pB.y;
+            var dist=Math.hypot(dx,dy);
+            if(dist<88){
+              var a=clustLineAlpha*(1-dist/88);
+              ctx.strokeStyle='rgba(232, 212, 77, '+a+')';
+              ctx.beginPath();
+              ctx.moveTo(pA.x,pA.y);
+              ctx.lineTo(pB.x,pB.y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+    }
+
+    // 3. Convergent Decision Point Rays & Core (when wContact > 0.04)
+    if(wContact>0.04){
+      var rayAlpha=wContact*0.15;
+      ctx.lineWidth=1;
+      for(var i=0;i<N;i++){
+        var pA=targets[i];
+        var distToC=Math.hypot(pA.x-decisionCenter.x,pA.y-decisionCenter.y);
+        if(distToC<minDim*0.42){
+          var a=rayAlpha*(1-distToC/(minDim*0.42));
+          ctx.strokeStyle='rgba(232, 212, 77, '+a+')';
+          ctx.beginPath();
+          ctx.moveTo(pA.x,pA.y);
+          ctx.lineTo(decisionCenter.x,decisionCenter.y);
+          ctx.stroke();
+        }
+      }
+
+      // Glowing Decision Point Core
+      var coreR=48*wContact;
+      var grad=ctx.createRadialGradient(decisionCenter.x,decisionCenter.y,2,decisionCenter.x,decisionCenter.y,coreR);
+      grad.addColorStop(0,'rgba(255, 246, 176, '+(0.75*wContact)+')');
+      grad.addColorStop(0.25,'rgba(232, 212, 77, '+(0.55*wContact)+')');
+      grad.addColorStop(0.65,'rgba(232, 212, 77, '+(0.18*wContact)+')');
+      grad.addColorStop(1,'rgba(232, 212, 77, 0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      ctx.arc(decisionCenter.x,decisionCenter.y,coreR,0,Math.PI*2);
+      ctx.fill();
+
+      // Sharp central bright node
+      ctx.fillStyle='rgba(255, 255, 255, '+(0.9*wContact)+')';
+      ctx.beginPath();
+      ctx.arc(decisionCenter.x,decisionCenter.y,3*wContact,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    // DRAW PARTICLES:
+    for(var i=0;i<N;i++){
+      var p=targets[i];
+      if(p.alpha<=0.01)continue;
+
+      ctx.fillStyle='rgba(232, 212, 77, '+p.alpha+')';
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+
+      // If neural node is lit or near decision center, give delicate soft halo
+      if(wProj>0.4&&p.isLit){
+        ctx.fillStyle='rgba(255, 246, 176, '+(p.alpha*0.45)+')';
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size*2.2,0,Math.PI*2);
+        ctx.fill();
+      }
+    }
+  }
+
+  animId=requestAnimationFrame(loop);
+})();
 // cards: spotlight + tilt
 var cards=D.querySelectorAll('.pillar-card,.timeline-card,.project-card,.skill-category-card,.edu-card,.contact-box');
 cards.forEach(function(el){
