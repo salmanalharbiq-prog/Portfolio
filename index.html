@@ -1328,31 +1328,35 @@ html[dir=rtl] .cert-item:hover{transform:translateX(-6px)}
   z-index: 45;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 1.35rem;
-  padding: 0.85rem 0.4rem;
+  padding: 0.95rem 0.55rem;
   pointer-events: auto;
   user-select: none;
-  background: rgba(11, 11, 12, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(232, 212, 77, 0.12);
-  border-radius: 24px;
-}
-
-html[dir="rtl"] .journey-rail {
-  align-items: flex-start;
+  background: rgba(11, 11, 12, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 212, 77, 0.16);
+  border-radius: 28px;
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.75);
 }
 
 .journey-rail-track-line {
   position: absolute;
-  top: 1.35rem;
-  bottom: 1.35rem;
-  inset-inline-end: 0.95rem;
+  top: 1.45rem;
+  bottom: 1.45rem;
   width: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   z-index: 1;
   pointer-events: none;
+}
+
+html[dir="ltr"] .journey-rail-track-line {
+  right: 1.05rem;
+}
+
+html[dir="rtl"] .journey-rail-track-line {
+  left: 1.05rem;
 }
 
 .journey-rail-track-fill {
@@ -1362,8 +1366,8 @@ html[dir="rtl"] .journey-rail {
   width: 100%;
   height: 0%;
   background: linear-gradient(180deg, var(--accent), #fff6b0);
-  box-shadow: 0 0 8px rgba(232, 212, 77, 0.6);
-  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(232, 212, 77, 0.7);
+  transition: height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .journey-step {
@@ -1371,10 +1375,10 @@ html[dir="rtl"] .journey-rail {
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   background: transparent;
   border: none;
-  padding: 0.25rem 0.3rem;
+  padding: 0.25rem 0.4rem;
   cursor: pointer;
   text-decoration: none;
   outline: none;
@@ -1383,34 +1387,36 @@ html[dir="rtl"] .journey-rail {
 
 html[dir="ltr"] .journey-step {
   flex-direction: row;
+  justify-content: flex-end;
 }
 
 html[dir="rtl"] .journey-step {
   flex-direction: row-reverse;
+  justify-content: flex-start;
 }
 
 .journey-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  border: 1.5px solid rgba(232, 212, 77, 0.4);
+  border: 1.5px solid rgba(232, 212, 77, 0.45);
   background: #0b0b0c;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 0 2px rgba(11, 11, 12, 0.85);
+  box-shadow: 0 0 0 2.5px rgba(11, 11, 12, 0.95);
   flex-shrink: 0;
 }
 
 .journey-step:hover .journey-dot {
   border-color: var(--accent);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px rgba(232, 212, 77, 0.6);
+  transform: scale(1.35);
+  box-shadow: 0 0 12px rgba(232, 212, 77, 0.7);
 }
 
 .journey-step.active .journey-dot {
   background: var(--accent);
   border-color: #fff6b0;
-  transform: scale(1.4);
-  box-shadow: 0 0 12px rgba(232, 212, 77, 0.9), 0 0 0 3px rgba(232, 212, 77, 0.2);
+  transform: scale(1.45);
+  box-shadow: 0 0 14px rgba(232, 212, 77, 0.95), 0 0 0 3px rgba(232, 212, 77, 0.25);
 }
 
 .journey-label {
@@ -1420,7 +1426,7 @@ html[dir="rtl"] .journey-step {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-faint);
-  opacity: 0.72;
+  opacity: 0.75;
   transition: all 0.25s ease;
   white-space: nowrap;
   pointer-events: none;
@@ -1435,20 +1441,23 @@ html[dir="rtl"] .journey-step {
   color: var(--accent);
   font-weight: 700;
   opacity: 1;
-  text-shadow: 0 0 10px rgba(232, 212, 77, 0.4);
+  text-shadow: 0 0 10px rgba(232, 212, 77, 0.5);
 }
 
 @media (max-width: 768px) {
   .journey-rail {
     inset-inline-end: 0.5rem;
-    gap: 1.1rem;
-    padding: 0.6rem 0.3rem;
+    gap: 1.15rem;
+    padding: 0.75rem 0.35rem;
   }
   .journey-label {
     display: none;
   }
-  .journey-rail-track-line {
-    inset-inline-end: 0.65rem;
+  html[dir="ltr"] .journey-rail-track-line {
+    right: 0.78rem;
+  }
+  html[dir="rtl"] .journey-rail-track-line {
+    left: 0.78rem;
   }
 }
 
@@ -1498,8 +1507,8 @@ html[dir="rtl"] .journey-step {
         <ul class="nav-links">
           <li><a href="#about" data-i18n="nav_about">About</a></li>
           <li><a href="#experience" data-i18n="nav_experience">Experience</a></li>
-          <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
           <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
           <li><a href="#education" data-i18n="nav_education">Education</a></li>
           <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         </ul>
@@ -1522,8 +1531,8 @@ html[dir="rtl"] .journey-step {
       <ul>
         <li><a href="#about" data-i18n="nav_about" class="mobile-nav-link">About</a></li>
         <li><a href="#experience" data-i18n="nav_experience" class="mobile-nav-link">Experience</a></li>
-        <li><a href="#projects" data-i18n="nav_projects" class="mobile-nav-link">Projects</a></li>
         <li><a href="#skills" data-i18n="nav_skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projects" data-i18n="nav_projects" class="mobile-nav-link">Projects</a></li>
         <li><a href="#education" data-i18n="nav_education" class="mobile-nav-link">Education</a></li>
         <li><a href="#contact" data-i18n="nav_contact" class="mobile-nav-link">Contact</a></li>
       </ul>
@@ -1688,6 +1697,117 @@ html[dir="rtl"] .journey-step {
 
     <hr class="dotted-divider container" />
 
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <div class="fade-up">
+          <div class="section-kicker" data-i18n="kicker_skills">Core Competencies</div>
+          <h2 class="section-title" data-i18n="title_skills">Skills & Expertise</h2>
+
+          <!-- Category Filter Chips -->
+          <div class="skills-filter-nav" role="tablist" aria-label="Skills filter">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All Disciplines</button>
+            <button class="filter-btn" data-filter="strategy" data-i18n="filter_strategy">Decision & Strategy</button>
+            <button class="filter-btn" data-filter="governance" data-i18n="filter_governance">Governance & Compliance</button>
+            <button class="filter-btn" data-filter="ai" data-i18n="filter_ai">Data Science & AI</button>
+            <button class="filter-btn" data-filter="engineering" data-i18n="filter_engineering">Data Engineering & MLOps</button>
+            <button class="filter-btn" data-filter="tools" data-i18n="filter_tools">BI & Tools</button>
+          </div>
+
+          <div class="skills-display-grid">
+            <!-- 1. Decision Intelligence & Strategy -->
+            <div class="skill-category-card" data-category="strategy">
+              <div class="skill-category-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span data-i18n="cat_strategy">Decision Intelligence & Strategy</span>
+              </div>
+              <div class="skill-item-list">
+                <span class="skill-pill" data-i18n="s_di">Decision Intelligence</span>
+                <span class="skill-pill" data-i18n="s_ba">Business Analysis</span>
+                <span class="skill-pill" data-i18n="s_cpm">Corporate Performance Management</span>
+                <span class="skill-pill" data-i18n="s_roi">ROI Analysis</span>
+                <span class="skill-pill" data-i18n="s_storytelling">Data Storytelling</span>
+                <span class="skill-pill" data-i18n="s_surveillance">Market Surveillance</span>
+              </div>
+            </div>
+
+            <!-- 2. Governance & Compliance -->
+            <div class="skill-category-card" data-category="governance">
+              <div class="skill-category-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span data-i18n="cat_governance">Governance & Compliance</span>
+              </div>
+              <div class="skill-item-list">
+                <span class="skill-pill" data-i18n="s_pdpl">Saudi PDPL</span>
+                <span class="skill-pill" data-i18n="s_ndmo">NDMO Frameworks</span>
+                <span class="skill-pill" data-i18n="s_ethics">Data Ethics</span>
+                <span class="skill-pill" data-i18n="s_compliance">Regulatory Compliance</span>
+                <span class="skill-pill" data-i18n="s_classification">Data Classification</span>
+                <span class="skill-pill" data-i18n="s_privacy">Privacy-by-Design</span>
+              </div>
+            </div>
+
+            <!-- 3. Data Science & AI -->
+            <div class="skill-category-card" data-category="ai">
+              <div class="skill-category-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <span data-i18n="cat_ai">Data Science & AI</span>
+              </div>
+              <div class="skill-item-list">
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">R</span>
+                <span class="skill-pill" data-i18n="s_ml">Machine Learning</span>
+                <span class="skill-pill" data-i18n="s_dl">Deep Learning</span>
+                <span class="skill-pill">NLP</span>
+                <span class="skill-pill" data-i18n="s_cv">Computer Vision</span>
+                <span class="skill-pill" data-i18n="s_predictive">Predictive Modeling</span>
+                <span class="skill-pill" data-i18n="s_timeseries">Time-Series Analysis</span>
+                <span class="skill-pill" data-i18n="s_statistical">Statistical Analysis</span>
+                <span class="skill-pill" data-i18n="s_localllms">Local LLMs</span>
+              </div>
+            </div>
+
+            <!-- 4. Data Engineering & MLOps -->
+            <div class="skill-category-card" data-category="engineering">
+              <div class="skill-category-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <span data-i18n="cat_engineering">Data Engineering & MLOps</span>
+              </div>
+              <div class="skill-item-list">
+                <span class="skill-pill">SQL</span>
+                <span class="skill-pill">ETL</span>
+                <span class="skill-pill" data-i18n="s_pipelines">Data Pipelines</span>
+                <span class="skill-pill">Docker</span>
+                <span class="skill-pill">Git</span>
+                <span class="skill-pill">MLOps</span>
+                <span class="skill-pill">Delta Lake</span>
+              </div>
+            </div>
+
+            <!-- 5. BI & Tools -->
+            <div class="skill-category-card" data-category="tools">
+              <div class="skill-category-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                <span data-i18n="cat_tools">BI & Tools</span>
+              </div>
+              <div class="skill-item-list">
+                <span class="skill-pill">Power BI</span>
+                <span class="skill-pill">Tableau</span>
+                <span class="skill-pill">SAP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="languages-strip">
+            <span class="languages-label" data-i18n="label_languages">Languages:</span>
+            <span data-i18n="val_languages">Arabic (Native), English.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="dotted-divider container" />
+
     <!-- Projects Section -->
     <section id="projects">
       <div class="container">
@@ -1822,117 +1942,6 @@ html[dir="rtl"] .journey-step {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="dotted-divider container" />
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <div class="container">
-        <div class="fade-up">
-          <div class="section-kicker" data-i18n="kicker_skills">Core Competencies</div>
-          <h2 class="section-title" data-i18n="title_skills">Skills & Expertise</h2>
-
-          <!-- Category Filter Chips -->
-          <div class="skills-filter-nav" role="tablist" aria-label="Skills filter">
-            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All Disciplines</button>
-            <button class="filter-btn" data-filter="strategy" data-i18n="filter_strategy">Decision & Strategy</button>
-            <button class="filter-btn" data-filter="governance" data-i18n="filter_governance">Governance & Compliance</button>
-            <button class="filter-btn" data-filter="ai" data-i18n="filter_ai">Data Science & AI</button>
-            <button class="filter-btn" data-filter="engineering" data-i18n="filter_engineering">Data Engineering & MLOps</button>
-            <button class="filter-btn" data-filter="tools" data-i18n="filter_tools">BI & Tools</button>
-          </div>
-
-          <div class="skills-display-grid">
-            <!-- 1. Decision Intelligence & Strategy -->
-            <div class="skill-category-card" data-category="strategy">
-              <div class="skill-category-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <span data-i18n="cat_strategy">Decision Intelligence & Strategy</span>
-              </div>
-              <div class="skill-item-list">
-                <span class="skill-pill" data-i18n="s_di">Decision Intelligence</span>
-                <span class="skill-pill" data-i18n="s_ba">Business Analysis</span>
-                <span class="skill-pill" data-i18n="s_cpm">Corporate Performance Management</span>
-                <span class="skill-pill" data-i18n="s_roi">ROI Analysis</span>
-                <span class="skill-pill" data-i18n="s_storytelling">Data Storytelling</span>
-                <span class="skill-pill" data-i18n="s_surveillance">Market Surveillance</span>
-              </div>
-            </div>
-
-            <!-- 2. Governance & Compliance -->
-            <div class="skill-category-card" data-category="governance">
-              <div class="skill-category-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span data-i18n="cat_governance">Governance & Compliance</span>
-              </div>
-              <div class="skill-item-list">
-                <span class="skill-pill" data-i18n="s_pdpl">Saudi PDPL</span>
-                <span class="skill-pill" data-i18n="s_ndmo">NDMO Frameworks</span>
-                <span class="skill-pill" data-i18n="s_ethics">Data Ethics</span>
-                <span class="skill-pill" data-i18n="s_compliance">Regulatory Compliance</span>
-                <span class="skill-pill" data-i18n="s_classification">Data Classification</span>
-                <span class="skill-pill" data-i18n="s_privacy">Privacy-by-Design</span>
-              </div>
-            </div>
-
-            <!-- 3. Data Science & AI -->
-            <div class="skill-category-card" data-category="ai">
-              <div class="skill-category-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                <span data-i18n="cat_ai">Data Science & AI</span>
-              </div>
-              <div class="skill-item-list">
-                <span class="skill-pill">Python</span>
-                <span class="skill-pill">R</span>
-                <span class="skill-pill" data-i18n="s_ml">Machine Learning</span>
-                <span class="skill-pill" data-i18n="s_dl">Deep Learning</span>
-                <span class="skill-pill">NLP</span>
-                <span class="skill-pill" data-i18n="s_cv">Computer Vision</span>
-                <span class="skill-pill" data-i18n="s_predictive">Predictive Modeling</span>
-                <span class="skill-pill" data-i18n="s_timeseries">Time-Series Analysis</span>
-                <span class="skill-pill" data-i18n="s_statistical">Statistical Analysis</span>
-                <span class="skill-pill" data-i18n="s_localllms">Local LLMs</span>
-              </div>
-            </div>
-
-            <!-- 4. Data Engineering & MLOps -->
-            <div class="skill-category-card" data-category="engineering">
-              <div class="skill-category-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
-                <span data-i18n="cat_engineering">Data Engineering & MLOps</span>
-              </div>
-              <div class="skill-item-list">
-                <span class="skill-pill">SQL</span>
-                <span class="skill-pill">ETL</span>
-                <span class="skill-pill" data-i18n="s_pipelines">Data Pipelines</span>
-                <span class="skill-pill">Docker</span>
-                <span class="skill-pill">Git</span>
-                <span class="skill-pill">MLOps</span>
-                <span class="skill-pill">Delta Lake</span>
-              </div>
-            </div>
-
-            <!-- 5. BI & Tools -->
-            <div class="skill-category-card" data-category="tools">
-              <div class="skill-category-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                <span data-i18n="cat_tools">BI & Tools</span>
-              </div>
-              <div class="skill-item-list">
-                <span class="skill-pill">Power BI</span>
-                <span class="skill-pill">Tableau</span>
-                <span class="skill-pill">SAP</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="languages-strip">
-            <span class="languages-label" data-i18n="label_languages">Languages:</span>
-            <span data-i18n="val_languages">Arabic (Native), English.</span>
           </div>
         </div>
       </div>
@@ -3178,40 +3187,40 @@ if(!del&&ci>=w.length){del=true;t=1400}else if(del&&ci<=0){del=false;ri++;t=300}
     var scrollY=window.scrollY||window.pageYOffset;
     var vh=window.innerHeight;
 
-    var projY=projEl?Math.max(1,projEl.offsetTop-vh*0.3):vh;
-    var skillsY=skillsEl?Math.max(projY+1,skillsEl.offsetTop-vh*0.3):vh*2;
-    var contactY=contactEl?Math.max(skillsY+1,contactEl.offsetTop-vh*0.45):vh*3;
+    var skillsY=skillsEl?Math.max(1,skillsEl.offsetTop-vh*0.35):vh;
+    var projY=projEl?Math.max(skillsY+1,projEl.offsetTop-vh*0.35):vh*2;
+    var contactY=contactEl?Math.max(projY+1,contactEl.offsetTop-vh*0.5):vh*3;
 
     // Continuous scroll phase weights
-    var wHero=0,wProj=0,wSkills=0,wContact=0;
+    var wHero=0,wSkills=0,wProj=0,wContact=0;
 
-    if(scrollY<=projY){
-      var p=Math.min(Math.max(scrollY/projY,0),1);
+    if(scrollY<=skillsY){
+      var p=Math.min(Math.max(scrollY/skillsY,0),1);
       var ease=p*p*(3-2*p);
       wHero=1-ease;
-      wProj=ease;
-    }else if(scrollY<=skillsY){
-      var p=Math.min(Math.max((scrollY-projY)/(skillsY-projY),0),1);
-      var ease=p*p*(3-2*p);
-      wProj=1-ease;
       wSkills=ease;
-    }else{
-      var p=Math.min(Math.max((scrollY-skillsY)/(contactY-skillsY),0),1);
+    }else if(scrollY<=projY){
+      var p=Math.min(Math.max((scrollY-skillsY)/(projY-skillsY),0),1);
       var ease=p*p*(3-2*p);
       wSkills=1-ease;
+      wProj=ease;
+    }else{
+      var p=Math.min(Math.max((scrollY-projY)/(contactY-projY),0),1);
+      var ease=p*p*(3-2*p);
+      wProj=1-ease;
       wContact=ease;
     }
 
-    // Active rail pip update
+    // Active rail pip update - 100% strictly synchronized with sections
     var activeStep=0;
-    if(wContact>0.4){
-      activeStep=3; // Decision
-    }else if(wSkills>0.45){
-      activeStep=1; // Patterns
-    }else if(wProj>0.45){
-      activeStep=2; // AI
+    if(scrollY>=contactY-vh*0.1){
+      activeStep=3; // Section 4: Contact / Decision
+    }else if(scrollY>=projY-vh*0.1){
+      activeStep=2; // Section 3: Projects / AI
+    }else if(scrollY>=skillsY-vh*0.1){
+      activeStep=1; // Section 2: Skills / Patterns
     }else{
-      activeStep=0; // Data
+      activeStep=0; // Section 1: Hero / Data
     }
 
     railSteps.forEach(function(step){
@@ -3220,9 +3229,15 @@ if(!del&&ci>=w.length){del=true;t=1400}else if(del&&ci<=0){del=false;ri++;t=300}
     });
 
     if(railFill){
-      var maxScroll=Math.max(1,D.documentElement.scrollHeight-window.innerHeight);
-      var overallP=Math.min(Math.max(scrollY/maxScroll,0),1);
-      railFill.style.height=(overallP*100)+'%';
+      var railProgress=0;
+      if(scrollY<=skillsY){
+        railProgress=(scrollY/skillsY)*(1/3);
+      }else if(scrollY<=projY){
+        railProgress=(1/3)+((scrollY-skillsY)/(projY-skillsY))*(1/3);
+      }else{
+        railProgress=(2/3)+Math.min(Math.max((scrollY-projY)/(contactY-projY),0),1)*(1/3);
+      }
+      railFill.style.height=(Math.min(Math.max(railProgress,0),1)*100)+'%';
     }
 
     // Projects layer sequential lighting progress
@@ -3306,18 +3321,18 @@ if(!del&&ci>=w.length){del=true;t=1400}else if(del&&ci<=0){del=false;ri++;t=300}
 
       // Morph coordinates smoothly based on scroll phase
       var finalX=0,finalY=0,finalAlpha=0;
-      if(wHero>0||(wProj>0&&wSkills===0&&wContact===0)){
-        finalX=hx*wHero+lx*wProj;
-        finalY=hy*wHero+ly*wProj;
-        finalAlpha=hAlpha*wHero+pAlpha*wProj;
-      }else if(wProj>0||(wSkills>0&&wContact===0)){
-        finalX=lx*wProj+sx*wSkills;
-        finalY=ly*wProj+sy*wSkills;
-        finalAlpha=pAlpha*wProj+sAlpha*wSkills;
+      if(wHero>0||(wSkills>0&&wProj===0&&wContact===0)){
+        finalX=hx*wHero+sx*wSkills;
+        finalY=hy*wHero+sy*wSkills;
+        finalAlpha=hAlpha*wHero+sAlpha*wSkills;
+      }else if(wSkills>0||(wProj>0&&wContact===0)){
+        finalX=sx*wSkills+lx*wProj;
+        finalY=sy*wSkills+ly*wProj;
+        finalAlpha=sAlpha*wSkills+pAlpha*wProj;
       }else{
-        finalX=sx*wSkills+dx*wContact;
-        finalY=sy*wSkills+dy*wContact;
-        finalAlpha=sAlpha*wSkills+dAlpha*wContact;
+        finalX=lx*wProj+dx*wContact;
+        finalY=ly*wProj+dy*wContact;
+        finalAlpha=pAlpha*wProj+dAlpha*wContact;
       }
 
       p.x+=(finalX-p.x)*0.22;
